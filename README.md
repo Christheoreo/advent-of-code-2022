@@ -2,9 +2,11 @@
 
 ## Is this the year I complete them all?
 
-use `make run` and change the number to the desired day.
+```bash
+make build
 
-You can also run `make test-p` to test all problems. 
+./bin/cli solve 1 -p all
+```
 
 
 |  Day  | Part one | Part two |
