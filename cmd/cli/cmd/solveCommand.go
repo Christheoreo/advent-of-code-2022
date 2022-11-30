@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"time"
 
-	"github.com/christheoreo/advent-of-code-2022/internal/timetrack"
+	"github.com/christheoreo/advent-of-code-2022/internal/problems/timetrack"
 	"github.com/spf13/cobra"
 )
 
