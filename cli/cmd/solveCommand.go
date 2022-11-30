@@ -18,6 +18,7 @@ var cmdSolve = &cobra.Command{
 	Args:  cobra.MinimumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		if partString != "all" && partString != "1" && partString != "2" {
+			fmt.Println("using 'all' as part provided is invalid (expecting all, 1 or 2")
 			partString = "all"
 		}
 
