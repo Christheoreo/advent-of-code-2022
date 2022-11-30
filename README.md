@@ -2,7 +2,9 @@
 
 ## Is this the year I complete them all?
 
-Make sure to run the makefile from the root directory.
+use `make run` and change the number to the desired day.
+
+You can also run `make test-p` to test all problems. 
 
 
 |  Day  | Part one | Part two |

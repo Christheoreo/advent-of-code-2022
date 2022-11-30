@@ -27,7 +27,6 @@ func solveDay(problemNumber int) {
 
 	firstTime := time.Now()
 
-	// defer TimeTrack(time.Now(), fmt.Sprintf("Problem %d", problemNumber))
 	err := problem.SolveFirst()
 
 	timetrack.TimeTrack(firstTime, fmt.Sprintf("%d - part 1", problemNumber))
