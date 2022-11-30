@@ -12,5 +12,5 @@ test-pc:
 	go test -v -cover ./problems/...
 vet:
 	go vet ./...
-run:
-	go run main.go
+build:
+	go build -o ./bin/cli ./cmd/cli/main.go
