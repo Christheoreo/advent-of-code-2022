@@ -9,7 +9,7 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var partString string = "all"
+var partString string
 
 var cmdSolve = &cobra.Command{
 	Use:   "solve [problem number] [part]",
@@ -60,5 +60,5 @@ var cmdSolve = &cobra.Command{
 }
 
 func init() {
-	cmdSolve.Flags().StringVarP(&partString, "part", "p", "", "Problem part")
+	cmdSolve.Flags().StringVarP(&partString, "part", "p", "all", "Problem part")
 }

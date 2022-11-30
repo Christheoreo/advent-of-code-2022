@@ -13,4 +13,4 @@ test-pc:
 vet:
 	go vet ./...
 build:
-	go build -o ./bin/cli ./cli/main.go
+	go build -o ./bin/cli ./cmd/cli/main.go
