@@ -14,7 +14,7 @@ var problemsMap map[int]problems.Problem = map[int]problems.Problem{
 
 func Execute() {
 
-	var rootCmd = &cobra.Command{Use: "app"}
+	var rootCmd = &cobra.Command{Use: "cli"}
 	rootCmd.AddCommand(cmdSolve)
 	if err := rootCmd.Execute(); err != nil {
 		fmt.Println(err)
