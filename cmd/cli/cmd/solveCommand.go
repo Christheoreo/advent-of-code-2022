@@ -29,7 +29,7 @@ var cmdSolve = &cobra.Command{
 			return
 		}
 
-		problem, ok := problemsMap[problemNumber]
+		mapping, ok := problemsMap[problemNumber]
 
 		if !ok {
 			fmt.Println("Error - could not find problem to solve")
@@ -38,7 +38,7 @@ var cmdSolve = &cobra.Command{
 
 		if partString == "all" || partString == "1" {
 			firstTime := time.Now()
-			err = problem.SolveFirst()
+			err = mapping.problem.SolveFirst(mapping.files[0])
 
 			timetrack.TimeTrack(firstTime, fmt.Sprintf("%d - part 1", problemNumber))
 			if err != nil {
@@ -51,7 +51,7 @@ var cmdSolve = &cobra.Command{
 		}
 
 		secondTime := time.Now()
-		err = problem.SolveSecond()
+		err = mapping.problem.SolveSecond(mapping.files[0])
 		timetrack.TimeTrack(secondTime, fmt.Sprintf("%d - part 2", problemNumber))
 		if err != nil {
 			panic(err)

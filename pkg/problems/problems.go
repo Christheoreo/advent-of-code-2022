@@ -1,7 +1,7 @@
 package problems
 
 type Problem interface {
-	Solve() error
-	SolveFirst() error
-	SolveSecond() error
+	Solve(filename string) error
+	SolveFirst(filename string) error
+	SolveSecond(filename string) error
 }

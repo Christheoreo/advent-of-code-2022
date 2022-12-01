@@ -9,17 +9,17 @@ import (
 
 type ProblemOne struct{}
 
-func (p ProblemOne) Solve() error {
-	err := p.SolveFirst()
+func (p ProblemOne) Solve(filename string) error {
+	err := p.SolveFirst(filename)
 
 	if err != nil {
 		return err
 	}
 
-	return p.SolveSecond()
+	return p.SolveSecond(filename)
 }
-func (p ProblemOne) SolveFirst() error {
-	data, _ := filereader.ReadFileToStringArray("p1p1.txt")
+func (p ProblemOne) SolveFirst(filename string) error {
+	data, _ := filereader.ReadFileToStringArray(filename)
 	largest := 0
 	runningTotal := 0
 
@@ -38,8 +38,8 @@ func (p ProblemOne) SolveFirst() error {
 	fmt.Println(largest)
 	return nil
 }
-func (p ProblemOne) SolveSecond() error {
-	data, _ := filereader.ReadFileToStringArray("p1p1.txt")
+func (p ProblemOne) SolveSecond(filename string) error {
+	data, _ := filereader.ReadFileToStringArray(filename)
 	l := [3]int{0, 0, 0}
 
 	runningTotal := 0

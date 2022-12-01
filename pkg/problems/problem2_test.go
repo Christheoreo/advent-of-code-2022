@@ -1,11 +1,26 @@
 package problems
 
-import "testing"
+import (
+	"testing"
+)
+
+var problem2TestFile string = "problem-2-example.txt"
+var problem2RealFile string = "problem-2.txt"
 
 func TestProblem2PartOne(t *testing.T) {
-	p := ProblemTwo{}
 
-	err := p.SolveFirst()
+	var p Problem = ProblemTwo{}
+	err := p.SolveFirst(problem2TestFile)
+
+	if err != nil {
+		t.Log("error should be nil", err)
+		t.Fail()
+	}
+}
+
+func TestProblem2PartOneReal(t *testing.T) {
+	var p Problem = ProblemTwo{}
+	err := p.SolveFirst(problem2RealFile)
 
 	if err != nil {
 		t.Log("error should be nil", err)
@@ -14,9 +29,8 @@ func TestProblem2PartOne(t *testing.T) {
 }
 
 func TestProblem2PartTwo(t *testing.T) {
-	p := ProblemTwo{}
-
-	err := p.SolveSecond()
+	var p Problem = ProblemTwo{}
+	err := p.SolveFirst(problem2TestFile)
 
 	if err != nil {
 		t.Log("error should be nil", err)
@@ -24,10 +38,28 @@ func TestProblem2PartTwo(t *testing.T) {
 	}
 }
 
-func TestProblem2(t *testing.T) {
-	p := ProblemTwo{}
+func TestProblem2PartTwoReal(t *testing.T) {
+	var p Problem = ProblemTwo{}
+	err := p.SolveFirst(problem2RealFile)
+	if err != nil {
+		t.Log("error should be nil", err)
+		t.Fail()
+	}
+}
 
-	err := p.Solve()
+func TestProblem2(t *testing.T) {
+	var p Problem = ProblemTwo{}
+	err := p.SolveFirst(problem2TestFile)
+
+	if err != nil {
+		t.Log("error should be nil", err)
+		t.Fail()
+	}
+}
+
+func TestProblem2Real(t *testing.T) {
+	var p Problem = ProblemTwo{}
+	err := p.SolveFirst(problem2RealFile)
 
 	if err != nil {
 		t.Log("error should be nil", err)

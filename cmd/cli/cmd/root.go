@@ -8,9 +8,20 @@ import (
 	"github.com/spf13/cobra"
 )
 
-var problemsMap map[int]problems.Problem = map[int]problems.Problem{
-	1: problems.ProblemOne{},
-	2: problems.ProblemTwo{},
+type Mapping struct {
+	files   [2]string
+	problem problems.Problem
+}
+
+var problemsMap map[int]Mapping = map[int]Mapping{
+	1: {
+		problem: problems.ProblemOne{},
+		files:   [2]string{"problem-1.txt", "problem-1-example.txt"},
+	},
+	2: {
+		problem: problems.ProblemTwo{},
+		files:   [2]string{"problem-2.txt", "problem-2-example.txt"},
+	},
 }
 
 func Execute() {

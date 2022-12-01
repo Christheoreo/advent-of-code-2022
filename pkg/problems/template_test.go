@@ -2,10 +2,22 @@ package problems
 
 import "testing"
 
+var problemXTestFile string = "problem-X-example.txt"
+var problemXRealFile string = "problem-X.txt"
+
 func TestProblemXPartOne(t *testing.T) {
 	p := ProblemOne{}
+	err := p.SolveFirst(problemXTestFile)
 
-	err := p.SolveFirst()
+	if err != nil {
+		t.Log("error should be nil", err)
+		t.Fail()
+	}
+}
+
+func TestProblemXPartOneReal(t *testing.T) {
+	p := ProblemOne{}
+	err := p.SolveFirst(problemXRealFile)
 
 	if err != nil {
 		t.Log("error should be nil", err)
@@ -15,8 +27,17 @@ func TestProblemXPartOne(t *testing.T) {
 
 func TestProblemXPartTwo(t *testing.T) {
 	p := ProblemOne{}
+	err := p.SolveFirst(problemXTestFile)
 
-	err := p.SolveSecond()
+	if err != nil {
+		t.Log("error should be nil", err)
+		t.Fail()
+	}
+}
+
+func TestProblemXPartTwoReal(t *testing.T) {
+	p := ProblemOne{}
+	err := p.SolveFirst(problemXRealFile)
 
 	if err != nil {
 		t.Log("error should be nil", err)
@@ -26,8 +47,17 @@ func TestProblemXPartTwo(t *testing.T) {
 
 func TestProblemX(t *testing.T) {
 	p := ProblemOne{}
+	err := p.SolveFirst(problemXTestFile)
 
-	err := p.Solve()
+	if err != nil {
+		t.Log("error should be nil", err)
+		t.Fail()
+	}
+}
+
+func TestProblemXReal(t *testing.T) {
+	p := ProblemOne{}
+	err := p.SolveFirst(problemXRealFile)
 
 	if err != nil {
 		t.Log("error should be nil", err)

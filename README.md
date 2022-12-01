@@ -2,6 +2,12 @@
 
 ## Is this the year I complete them all?
 
+### run tests
+
+```bash
+make test-p #test the problems
+```
+
 ```bash
 make build
 

@@ -8,22 +8,22 @@ import (
 
 type ProblemTwo struct{}
 
-func (p ProblemTwo) Solve() error {
-	err := p.SolveFirst()
+func (p ProblemTwo) Solve(filename string) error {
+	err := p.SolveFirst(filename)
 
 	if err != nil {
 		return err
 	}
 
-	return p.SolveSecond()
+	return p.SolveSecond(filename)
 }
-func (p ProblemTwo) SolveFirst() error {
-	data, _ := filereader.ReadFileToStringArray("p2e.txt")
+func (p ProblemTwo) SolveFirst(filename string) error {
+	data, _ := filereader.ReadFileToStringArray(filename)
 	fmt.Println(data)
 	return nil
 }
-func (p ProblemTwo) SolveSecond() error {
-	data, _ := filereader.ReadFileToStringArray("p2e.txt")
+func (p ProblemTwo) SolveSecond(filename string) error {
+	data, _ := filereader.ReadFileToStringArray(filename)
 	fmt.Println(data)
 	return nil
 }
