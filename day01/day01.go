@@ -1,24 +1,12 @@
-package problems
+package day01
 
 import (
-	"fmt"
 	"strconv"
 
-	"github.com/christheoreo/advent-of-code-2022/internal/problems/filereader"
+	"github.com/christheoreo/advent-of-code-2022/internal/filereader"
 )
 
-type ProblemOne struct{}
-
-func (p ProblemOne) Solve(filename string) error {
-	err := p.SolveFirst(filename)
-
-	if err != nil {
-		return err
-	}
-
-	return p.SolveSecond(filename)
-}
-func (p ProblemOne) SolveFirst(filename string) error {
+func SolveFirst(filename string) int {
 	data, _ := filereader.ReadFileToStringArray(filename)
 	largest := 0
 	runningTotal := 0
@@ -34,11 +22,9 @@ func (p ProblemOne) SolveFirst(filename string) error {
 		val, _ := strconv.Atoi(v)
 		runningTotal += val
 	}
-
-	fmt.Println(largest)
-	return nil
+	return largest
 }
-func (p ProblemOne) SolveSecond(filename string) error {
+func SolveSecond(filename string) int {
 	data, _ := filereader.ReadFileToStringArray(filename)
 	l := [3]int{0, 0, 0}
 
@@ -54,8 +40,7 @@ func (p ProblemOne) SolveSecond(filename string) error {
 		runningTotal += val
 	}
 	checkRunningTotal(runningTotal, &l)
-	fmt.Println(l[0] + l[1] + l[2])
-	return nil
+	return l[0] + l[1] + l[2]
 }
 
 func checkRunningTotal(runningTotal int, l *[3]int) {
