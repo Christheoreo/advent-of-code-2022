@@ -36,7 +36,7 @@ var cmdSolve = &cobra.Command{
 			return
 		}
 
-		if partString == "all" || partString == "one" {
+		if partString == "all" || partString == "1" {
 			firstTime := time.Now()
 			err = problem.SolveFirst()
 
@@ -46,7 +46,7 @@ var cmdSolve = &cobra.Command{
 			}
 		}
 
-		if partString == "one" {
+		if partString == "1" {
 			return
 		}
 
@@ -60,5 +60,5 @@ var cmdSolve = &cobra.Command{
 }
 
 func init() {
-	cmdSolve.Flags().StringVarP(&partString, "part", "p", "all", "Problem part")
+	cmdSolve.Flags().StringVarP(&partString, "part", "p", "", "Problem part")
 }

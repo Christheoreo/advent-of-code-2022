@@ -7,11 +7,16 @@ make build
 
 ./bin/cli solve 1 -p all
 ```
+### OR
+
+```bash
+go run ./cmd/cli/main.go solve 1 -p all
+```
 
 
 |  Day  | Part one | Part two |
 | :---: |  :----:  |  :----:  |
-| 1     |   []     |   []     |
+| 1     |   [x]    |   [x]    |
 | 2     |   []     |   []     |
 | 3     |   []     |   []     |
 | 4     |   []     |   []     |
