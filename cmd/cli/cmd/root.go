@@ -10,6 +10,7 @@ import (
 
 var problemsMap map[int]problems.Problem = map[int]problems.Problem{
 	1: problems.ProblemOne{},
+	2: problems.ProblemTwo{},
 }
 
 func Execute() {
