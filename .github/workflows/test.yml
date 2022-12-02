@@ -20,7 +20,7 @@ jobs:
         run: make test
       - name: Bench
         id: bench
-        run: echo "benchmarks=$(make bench)\n" >> $GITHUB_OUTPUT
+        run: echo "benchmarks=$(make bench)<<EOF" >> $GITHUB_OUTPUT
 
       - name: Update Pull Request
         uses: actions/github-script@v6
