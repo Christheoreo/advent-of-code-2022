@@ -21,7 +21,7 @@ jobs:
       - name: Bench
         id: bench
         run: |
-          $MESSAGE = cat(make bench)
+          MESSAGE = $(cat make bench)
           echo "benchmarks=$MESSAGE\n" >> $GITHUB_OUTPUT
 
       - name: Update Pull Request
