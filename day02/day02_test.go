@@ -12,7 +12,7 @@ var testFile string = "problem-2-example.txt"
 var realFile string = "problem-2.txt"
 
 func TestSolveFirst(t *testing.T) {
-	expected := 24000
+	expected := 15
 	test := time.Now()
 
 	actual := SolveFirst(testFile)
@@ -30,7 +30,7 @@ func TestSolveFirst(t *testing.T) {
 }
 
 func TestSolveSecond(t *testing.T) {
-	expected := 45000
+	expected := 12
 	test := time.Now()
 
 	actual := SolveSecond(testFile)
@@ -42,7 +42,7 @@ func TestSolveSecond(t *testing.T) {
 	}
 
 	real := time.Now()
-	answer := SolveFirst(realFile)
+	answer := SolveSecond(realFile)
 	timetrack.TimeTrack(real, "Day 02 part 02")
 	fmt.Printf("Day 02 part 2 = %d\n", answer)
 }
