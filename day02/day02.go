@@ -6,6 +6,8 @@ import (
 	"github.com/christheoreo/advent-of-code-2022/internal/filereader"
 )
 
+// #4 is by far the fastest
+
 func SolveFirst(filename string) int {
 	// a = rock, b = paper, c = scissors. x = rock, y = paper, z = scissors
 	data, _ := filereader.ReadFileToStringArray(filename)
@@ -127,6 +129,94 @@ func SolveSecondAttempt2(filename string) int {
 		}
 		points += mapper[outcome][them]
 		runningTotal += points
+	}
+	return runningTotal
+}
+
+func SolveSecondAttempt3(filename string) int {
+	// a = rock, b = paper, c = scissors. x = loose, y = draw, z = win
+	data, _ := filereader.ReadFileToStringArray(filename)
+	runningTotal := 0
+
+	all := map[string]map[string]int{
+		"X": {
+			"A": 3,
+			"B": 1,
+			"C": 2,
+		},
+		"Y": { //added extra 3
+			"A": 4,
+			"B": 5,
+			"C": 6,
+		},
+		"Z": { // added extra 6
+			"A": 8,
+			"B": 9,
+			"C": 7,
+		},
+	}
+
+	for _, v := range data {
+		parts := strings.Split(v, " ")
+		points := 0
+
+		them := parts[0]
+		outcome := parts[1]
+
+		points += all[outcome][them]
+		runningTotal += points
+	}
+	return runningTotal
+}
+
+// This is the fastest
+func SolveSecondAttempt4(filename string) int {
+	// a = rock, b = paper, c = scissors. x = loose, y = draw, z = win
+	data, _ := filereader.ReadFileToStringArray(filename)
+	runningTotal := 0
+	for _, v := range data {
+		if v == "A X" {
+			runningTotal += 3
+			continue
+		}
+		if v == "A Y" {
+			runningTotal += 4
+			continue
+		}
+
+		if v == "A Z" {
+			runningTotal += 8
+			continue
+		}
+
+		if v == "B X" {
+			runningTotal += 1
+			continue
+		}
+
+		if v == "B Y" {
+			runningTotal += 5
+			continue
+		}
+
+		if v == "B Z" {
+			runningTotal += 9
+			continue
+		}
+
+		if v == "C X" {
+			runningTotal += 2
+			continue
+		}
+		if v == "C Y" {
+			runningTotal += 6
+			continue
+		}
+
+		if v == "C Z" {
+			runningTotal += 7
+			continue
+		}
 	}
 	return runningTotal
 }

@@ -29,7 +29,7 @@ func TestSolveSecond(t *testing.T) {
 	answer := SolveSecond(realFile)
 	fmt.Printf("\n-----\n --ANSWER Day 02 = %d \n-----\n", answer)
 }
-func TestSolveSecondAttempt(t *testing.T) {
+func TestSolveSecondAttempt2(t *testing.T) {
 	expected := 12
 	actual := SolveSecondAttempt2(testFile)
 	if expected != actual {
@@ -38,6 +38,27 @@ func TestSolveSecondAttempt(t *testing.T) {
 	}
 	answer := SolveSecondAttempt2(realFile)
 	fmt.Printf("\n-----\n --ANSWER Day 02 part 2B = %d \n-----\n", answer)
+}
+func TestSolveSecondAttempt3(t *testing.T) {
+	expected := 12
+	actual := SolveSecondAttempt3(testFile)
+	if expected != actual {
+		t.Errorf("Expected %d but got %d", expected, actual)
+		t.Fail()
+	}
+	answer := SolveSecondAttempt3(realFile)
+	fmt.Printf("\n-----\n --ANSWER Day 02 part 2C = %d \n-----\n", answer)
+}
+
+func TestSolveSecondAttempt4(t *testing.T) {
+	expected := 12
+	actual := SolveSecondAttempt4(testFile)
+	if expected != actual {
+		t.Errorf("Expected %d but got %d", expected, actual)
+		t.Fail()
+	}
+	answer := SolveSecondAttempt4(realFile)
+	fmt.Printf("\n-----\n --ANSWER Day 02 part 2D = %d \n-----\n", answer)
 }
 
 func BenchmarkSolveFirst(b *testing.B) {
@@ -53,5 +74,17 @@ func BenchmarkSolveSecond(b *testing.B) {
 func BenchmarkSolveSecondAttempt2(b *testing.B) {
 	for n := 0; n < b.N; n++ {
 		SolveSecondAttempt2(realFile)
+	}
+}
+
+func BenchmarkSolveSecondAttempt3(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		SolveSecondAttempt3(realFile)
+	}
+}
+
+func BenchmarkSolveSecondAttempt4(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		SolveSecondAttempt4(realFile)
 	}
 }
