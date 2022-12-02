@@ -50,7 +50,7 @@ func SolveFirst(filename string) int {
 }
 
 func SolveSecondA(filename string) int {
-	// a = rock, b = paper, c = scissors. x = loose, y = draw, z = win
+	// a = rock, b = paper, c = scissors. x = lose, y = draw, z = win
 	data, _ := filereader.ReadFileToStringArray(filename)
 	runningTotal := 0
 
@@ -87,7 +87,7 @@ func SolveSecondA(filename string) int {
 
 // This is the fastest
 func SolveSecondB(filename string) int {
-	// a = rock, b = paper, c = scissors. x = loose, y = draw, z = win
+	// a = rock, b = paper, c = scissors. x = lose, y = draw, z = win
 	data, _ := filereader.ReadFileToStringArray(filename)
 	runningTotal := 0
 	for _, v := range data {
