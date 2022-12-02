@@ -27,8 +27,6 @@ jobs:
       - name: Update Pull Request
         uses: actions/github-script@v6
         if: github.event_name == 'pull_request'
-        env:
-          PLAN: "terraform\n${{ steps.plan.outputs.stdout }}"
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
@@ -37,7 +35,7 @@ jobs:
 
             \`\`\`\n
             # ${{ steps.bench.outputs.benchmarks }}
-            $(cat test.txt)
+            ${cat test.txt}
             \`\`\`
 
             </details>
