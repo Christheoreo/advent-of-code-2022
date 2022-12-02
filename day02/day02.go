@@ -91,35 +91,34 @@ func SolveSecond(filename string) int {
 	return runningTotal
 }
 
-// This looks nicer but is slower!
+// This looks nicer
 func SolveSecondAttempt2(filename string) int {
 	// a = rock, b = paper, c = scissors. x = loose, y = draw, z = win
 	data, _ := filereader.ReadFileToStringArray(filename)
 	runningTotal := 0
+	mapper := map[string]map[string]int{
+		"Y": {
+			"A": 1,
+			"B": 2,
+			"C": 3,
+		},
+		"X": {
+			"A": 3,
+			"B": 1,
+			"C": 2,
+		},
+		"Z": {
+			"A": 2,
+			"B": 3,
+			"C": 1,
+		},
+	}
 	for _, v := range data {
 		parts := strings.Split(v, " ")
 		points := 0
 
 		them := parts[0]
 		outcome := parts[1]
-
-		mapper := map[string]map[string]int{
-			"Y": {
-				"A": 1,
-				"B": 2,
-				"C": 3,
-			},
-			"X": {
-				"A": 3,
-				"B": 1,
-				"C": 2,
-			},
-			"Z": {
-				"A": 2,
-				"B": 3,
-				"C": 1,
-			},
-		}
 
 		if outcome == "Y" { // Draw
 			points += 3
