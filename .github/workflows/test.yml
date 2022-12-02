@@ -16,4 +16,6 @@ jobs:
         with:
           go-version: 1.19
       - name: Check
-        run: make bench
+        run: |
+          make test
+          make bench
