@@ -93,7 +93,7 @@ func SolveSecond(filename string) int {
 
 // This looks nicer
 func SolveSecondAttempt2(filename string) int {
-	// a = rock, b = paper, c = scissors. x = loose, y = draw, z = win
+	// a = rock, b = paper, c = scissors. x = lose, y = draw, z = win
 	data, _ := filereader.ReadFileToStringArray(filename)
 	runningTotal := 0
 	mapper := map[string]map[string]int{
