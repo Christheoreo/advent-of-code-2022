@@ -5,8 +5,8 @@ import (
 	"testing"
 )
 
-var testFile string = "problem-2-example.txt"
-var realFile string = "problem-2.txt"
+var testFile string = "problem-3-example.txt"
+var realFile string = "problem-3.txt"
 
 func TestSolveFirst(t *testing.T) {
 	expected := 0
