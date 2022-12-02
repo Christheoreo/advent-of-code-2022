@@ -4,12 +4,22 @@
 
 ### testing
 
-Test a specific problem with `make test-[day]` e.g. `make test-1`
+Test a specific problem with `make test-[day]`
+
+```bash
+make test-1
+```
 
 Test all by running
 
 ```bash
 make test
+```
+
+Bench mark all
+
+```bash
+make bench
 ```
 
 
