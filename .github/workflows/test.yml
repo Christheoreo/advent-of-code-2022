@@ -22,7 +22,7 @@ jobs:
         id: bench
         run: |
           $MESSAGE = cat(make bench)
-        echo "benchmarks=$MESSAGE\n" >> $GITHUB_OUTPUT
+          echo "benchmarks=$MESSAGE\n" >> $GITHUB_OUTPUT
 
       - name: Update Pull Request
         uses: actions/github-script@v6
