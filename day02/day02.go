@@ -54,7 +54,7 @@ func SolveSecondA(filename string) int {
 	data, _ := filereader.ReadFileToStringArray(filename)
 	runningTotal := 0
 
-	all := map[string]map[string]int{
+	mapping := map[string]map[string]int{
 		"X": {
 			"A": 3,
 			"B": 1,
@@ -79,7 +79,7 @@ func SolveSecondA(filename string) int {
 		them := parts[0]
 		outcome := parts[1]
 
-		points += all[outcome][them]
+		points += mapping[outcome][them]
 		runningTotal += points
 	}
 	return runningTotal
