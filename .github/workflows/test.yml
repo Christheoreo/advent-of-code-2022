@@ -1,0 +1,48 @@
+name: Test Logic
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+
+jobs:
+
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up Go
+        uses: actions/setup-go@v3
+        with:
+          go-version: 1.19
+      - name: Test
+        id: test
+        run: make test
+      # - name: Bench
+      #   id: bench
+      #   run: |
+      #     echo "benchmarks=$(make bench)<<EOF" >> $GITHUB_OUTPUT # this failed
+
+      # - name: Update Pull Request
+      #   uses: actions/github-script@v6
+      #   if: github.event_name == 'pull_request'
+      #   with:
+      #     github-token: ${{ secrets.GITHUB_TOKEN }}
+      #     script: |
+      #       const output = `#### Test Benchmarks 🖌\`${{ steps.fmt.outcome }}\`
+      #       <details><summary>Benchmarks output</summary>
+
+      #       \`\`\`\n
+      #       ${{ steps.bench.outputs.benchmarks }}
+      #       \`\`\`
+
+      #       </details>
+            
+      #       *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Workflow: \`${{ github.workflow }}\`*`;
+              
+      #       github.rest.issues.createComment({
+      #         issue_number: context.issue.number,
+      #         owner: context.repo.owner,
+      #         repo: context.repo.repo,
+      #         body: output
+      #       })

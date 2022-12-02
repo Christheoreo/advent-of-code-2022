@@ -1,16 +1,10 @@
 test:
-	go test -v ./internal/...
-test-c:
-	go test -v -cover ./internal/...
-test-a:
 	go test -v ./...
-test-ac:
-	go test -v -cover ./...
-test-p:
-	go test -v ./pkg/problems/...
-test-pc:
-	go test -v -cover ./pkg/problems/...
-vet:
-	go vet ./...
-build:
-	go build -o ./bin/cli ./cmd/cli/main.go
+bench:
+	go test ./... -bench=. -benchmem -run=^$
+test-1:
+	go test -v github.com/christheoreo/advent-of-code-2022/day01
+bench-1:
+	go test github.com/christheoreo/advent-of-code-2022/day01 -bench=. -benchmem -run=^$
+test-2:
+	go test -v github.com/christheoreo/advent-of-code-2022/day02

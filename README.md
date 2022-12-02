@@ -2,22 +2,21 @@
 
 ## Is this the year I complete them all?
 
-```bash
-make build
+### testing
 
-./bin/cli solve 1 -p all
-```
-### OR
+Test a specific problem with `make test-[day]` e.g. `make test-1`
+
+Test all by running
 
 ```bash
-go run ./cmd/cli/main.go solve 1 -p all
+make test
 ```
 
 
 |  Day  | Part one | Part two |
 | :---: |  :----:  |  :----:  |
 | 1     |   [x]    |   [x]    |
-| 2     |   []     |   []     |
+| 2     |   [x]    |   [x]    |
 | 3     |   []     |   []     |
 | 4     |   []     |   []     |
 | 5     |   []     |   []     |
