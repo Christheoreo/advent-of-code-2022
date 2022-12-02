@@ -21,9 +21,8 @@ jobs:
       - name: Bench
         id: bench
         run: |
-          MESSAGE = $(make bench)
-          echo $MESSAGE
-          echo "benchmarks=$MESSAGE\n" >> $GITHUB_OUTPUT
+          make bench > test.txt
+          # echo "benchmarks=$(make bench)<<EOF" >> $GITHUB_OUTPUT
 
       - name: Update Pull Request
         uses: actions/github-script@v6
@@ -37,7 +36,8 @@ jobs:
             <details><summary>Benchmarks output</summary>
 
             \`\`\`\n
-            ${{ steps.bench.outputs.benchmarks }}
+            # ${{ steps.bench.outputs.benchmarks }}
+            $(cat test.txt)
             \`\`\`
 
             </details>
