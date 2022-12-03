@@ -30,6 +30,8 @@ func SolveFirst(filename string) int {
 	}
 	return points
 }
+
+// theres definitely a better way to do this
 func SolveSecond(filename string) int {
 	data, _ := filereader.ReadFileToStringArray(filename)
 	points := 0
@@ -47,80 +49,15 @@ func SolveSecond(filename string) int {
 		} else {
 			currentII++
 		}
-
 	}
 
 	for _, v := range threes {
-		// fmt.Println(v)
-
-		maxLength := len(v[0])
-		maxArr := v[0]
-
-		if len(v[1]) > maxLength {
-			maxLength = len(v[1])
-			maxArr = v[1]
-		}
-
-		if len(v[2]) > maxLength {
-			maxLength = len(v[2])
-			maxArr = v[2]
-		}
-
-		for i := 0; i < maxLength; i++ {
-			if strings.Contains(v[1], string(maxArr[i])) && strings.Contains(v[2], string(maxArr[i])) {
-				fmt.Println(string(maxArr[i]))
-
-				points += strings.Index(alphabet, string(maxArr[i])) + 1
+		for _, character := range v[0] {
+			if strings.ContainsRune(v[1], character) && strings.ContainsRune(v[2], character) {
+				points += strings.Index(alphabet, string(character)) + 1
 				break
 			}
-
-			// fmt.Println(string(str[i]))
-
-			// points += strings.Index(alphabet, string(str[i])) + 1
-			break
 		}
-	}
-
-	for i, _ := range data {
-		// fmt.Println(i + 1)
-		// fmt.Println((i + 1) % 3)
-		if (i+1)%3 != 0 {
-			// fmt.Println("ergh")
-			continue
-		}
-
-		// str := fmt.Sprintf("%s%s%s", data[i], data[i-1], data[i-2])
-		a, b, c := data[i], data[i-1], data[i-2]
-		fmt.Printf("%s\n%s\n%s", a, b, c)
-
-		for k := 0; k < len(a); k++ {
-			if strings.Contains(b, string(a[k])) && strings.Contains(c, string(a[k])) {
-				fmt.Println(string(a[k]))
-
-				points += strings.Index(alphabet, string(a[k])) + 1
-				break
-			}
-
-			// fmt.Println(string(str[i]))
-
-			// points += strings.Index(alphabet, string(str[i])) + 1
-			break
-		}
-
-		// fmt.Println(str)
-
-		// for i := 0; i < len(str); i++ {
-		// 	count := strings.Count(str, string(str[i]))
-
-		// 	if count != 3 {
-		// 		continue
-		// 	}
-
-		// 	fmt.Println(string(str[i]))
-
-		// 	points += strings.Index(alphabet, string(str[i])) + 1
-		// 	break
-		// }
 	}
 	return points
 }

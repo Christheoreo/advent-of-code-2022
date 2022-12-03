@@ -26,8 +26,8 @@ func TestSolveSecond(t *testing.T) {
 		t.Errorf("Expected %d but got %d", expected, actual)
 		t.Fail()
 	}
-	// answer := SolveSecond(realFile)
-	// fmt.Printf("\n-----\n --ANSWER Day 03 part 2 = %d \n-----\n", answer)
+	answer := SolveSecond(realFile)
+	fmt.Printf("\n-----\n --ANSWER Day 03 part 2 = %d \n-----\n", answer)
 }
 
 func BenchmarkSolveFirst(b *testing.B) {
