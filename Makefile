@@ -16,3 +16,7 @@ test-3:
 	go test -v github.com/christheoreo/advent-of-code-2022/day03
 bench-3:
 	go test github.com/christheoreo/advent-of-code-2022/day03 -bench=. -benchmem -run=^$
+test-4:
+	go test -v github.com/christheoreo/advent-of-code-2022/day04
+bench-4:
+	go test github.com/christheoreo/advent-of-code-2022/day04 -bench=. -benchmem -run=^$
