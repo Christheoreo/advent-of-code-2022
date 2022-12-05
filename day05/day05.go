@@ -89,6 +89,7 @@ func helper(filename string, isFirstProb bool) string {
 			num2, _ := strconv.Atoi(arr[1])
 			num3, _ := strconv.Atoi(arr[2])
 
+			// we only want to "moveAsUnit" or the second problem.
 			asUnit := !isFirstProb
 			stacks[num2].Move(num1, stacks[num3], asUnit)
 		}
