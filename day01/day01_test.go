@@ -30,7 +30,7 @@ func TestSolveSecond(t *testing.T) {
 		t.Fail()
 	}
 
-	answer := SolveFirst(realFile)
+	answer := SolveSecond(realFile)
 	fmt.Printf("\n-----\n --ANSWER Day 01 part 2 = %d \n-----\n", answer)
 }
 
