@@ -24,3 +24,7 @@ test-5:
 	go test -v github.com/christheoreo/advent-of-code-2022/day05 -count=1 # remove cache
 bench-5:
 	go test github.com/christheoreo/advent-of-code-2022/day05 -bench=. -benchmem -run=^$
+test-6:
+	go test -v github.com/christheoreo/advent-of-code-2022/day06 -count=1 # remove cache
+bench-6:
+	go test github.com/christheoreo/advent-of-code-2022/day06 -bench=. -benchmem -run=^$
