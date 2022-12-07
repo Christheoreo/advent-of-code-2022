@@ -80,18 +80,6 @@ func SolveFirst(filename string) int {
 	getSize(currentFolder)
 	return runningTotal
 }
-
-func getSize(folder *Folder) int {
-	var size int = folder.Size
-	for _, val := range folder.Children {
-		s := getSize(val)
-		size += s
-	}
-	if size <= 100000 {
-		runningTotal += size
-	}
-	return size
-}
 func SolveSecond(filename string) int {
 	smallestFolder = 0
 	data, _ := filereader.ReadFileToStringArray(filename)
@@ -158,6 +146,17 @@ func SolveSecond(filename string) int {
 	deleteSize := spaceNeeded - (capacity - totalSize)
 	getSmallerFolder(currentFolder, deleteSize)
 	return smallestFolder
+}
+func getSize(folder *Folder) int {
+	var size int = folder.Size
+	for _, val := range folder.Children {
+		s := getSize(val)
+		size += s
+	}
+	if size <= 100000 {
+		runningTotal += size
+	}
+	return size
 }
 func getSizeOfThisFolder(folder *Folder) int {
 	var size int = folder.Size
