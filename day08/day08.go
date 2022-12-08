@@ -1,7 +1,6 @@
 package day08
 
 import (
-	"fmt"
 	"strconv"
 
 	"github.com/christheoreo/advent-of-code-2022/internal/filereader"
@@ -9,102 +8,53 @@ import (
 
 func SolveFirst(filename string) int {
 	data, _ := filereader.ReadFileToStringArray(filename)
-
 	count := 0
-
 	rowsTotal := len(data)
-
 	rows := make([][]int, rowsTotal)
-
 	for rowIndex, line := range data {
 		for _, char := range line {
 			num, _ := strconv.Atoi(string(char))
 			rows[rowIndex] = append(rows[rowIndex], num)
 		}
 	}
-
 	for rowIndex := 1; rowIndex < len(rows[0])-1; rowIndex++ {
-
 		row := rows[rowIndex]
 
 		for col := 1; col < len(row)-1; col++ {
 			tree := row[col]
-
 			leftSide := row[:col]
 			rightSide := row[col+1:]
-			fmt.Printf("row =%d col = %d riughtise = %v\n", rowIndex, col, rightSide)
-
-			visible := true
-			for _, num := range leftSide {
-				if num >= tree {
-					visible = false
-					break
-				}
-			}
-			if visible {
-				count++
-				fmt.Printf("Tree  %d (%d, %d) is visible!\n", tree, rowIndex, col)
-				continue
-			}
-			visible = true
-
-			for _, num := range rightSide {
-				if num >= tree {
-					visible = false
-					break
-				}
-			}
-			if visible {
-				count++
-				fmt.Printf("Tree  %d (%d, %d) is visible!\n", tree, rowIndex, col)
-				continue
-			}
-			visible = true
-
 			above := make([]int, 0)
 			below := make([]int, 0)
 
-			if rowIndex > 0 {
-				for r := rowIndex - 1; r >= 0; r-- {
-					above = append(above, rows[r][col])
-				}
+			for r := rowIndex - 1; r >= 0; r-- {
+				above = append(above, rows[r][col])
+			}
+			for r := rowIndex + 1; r <= len(rows)-1; r++ {
+				below = append(below, rows[r][col])
 			}
 
-			if rowIndex < len(rows)-1 {
-				for r := rowIndex + 1; r <= len(rows)-1; r++ {
-					below = append(below, rows[r][col])
-				}
-			}
+			slices := [4][]int{rightSide, leftSide, above, below}
+			visible := true
 
-			for _, num := range above {
-				if num >= tree {
-					visible = false
-					break
+			for _, slice := range slices {
+				visible = true
+
+				for _, num := range slice {
+					if num >= tree {
+						visible = false
+						break
+					}
 				}
-			}
-			if visible {
+				if !visible {
+					continue
+				}
 				count++
-				fmt.Printf("Tree  %d (%d, %d) is visible!\n", tree, rowIndex, col)
-				continue
+				break
 			}
-			visible = true
-			for _, num := range below {
-				if num >= tree {
-					visible = false
-					break
-				}
-			}
-			if visible {
-				count++
-				fmt.Printf("Tree  %d (%d, %d) is visible!\n", tree, rowIndex, col)
-				continue
-			}
-
 		}
 	}
-
 	count += (len(rows) * 2) + ((len(rows[0]) - 2) * 2)
-
 	return count
 }
 func SolveSecond(filename string) int {
@@ -122,9 +72,7 @@ func SolveSecond(filename string) int {
 	}
 
 	for rowIndex := 1; rowIndex < rowsTotal-1; rowIndex++ {
-
 		row := rows[rowIndex]
-
 		for i := 1; i < len(row)-1; i++ {
 			tree := row[i]
 
