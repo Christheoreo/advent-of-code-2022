@@ -8,16 +8,16 @@ import (
 var testFile string = "problem-8-example.txt"
 var realFile string = "problem-8.txt"
 
-func TestSolveFirst(t *testing.T) {
-	expected := 21
-	actual := SolveFirst(testFile)
-	if expected != actual {
-		t.Errorf("Expected %d but got %d", expected, actual)
-		t.Fail()
-	}
-	answer := SolveFirst(realFile)
-	fmt.Printf("\n-----\n --ANSWER Day 08 part 1 = %d \n-----\n", answer)
-}
+// func TestSolveFirst(t *testing.T) {
+// 	expected := 21
+// 	actual := SolveFirst(testFile)
+// 	if expected != actual {
+// 		t.Errorf("Expected %d but got %d", expected, actual)
+// 		t.Fail()
+// 	}
+// 	// answer := SolveFirst(realFile)
+// 	// fmt.Printf("\n-----\n --ANSWER Day 08 part 1 = %d \n-----\n", answer)
+// }
 
 func TestSolveSecond(t *testing.T) {
 	expected := 8

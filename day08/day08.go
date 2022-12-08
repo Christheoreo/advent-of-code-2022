@@ -109,13 +109,11 @@ func SolveFirst(filename string) int {
 }
 func SolveSecond(filename string) int {
 	data, _ := filereader.ReadFileToStringArray(filename)
-
 	highscore := 0
-
 	rowsTotal := len(data)
-
 	rows := make([][]int, rowsTotal)
 
+	// setup the ints
 	for rowIndex, line := range data {
 		for _, char := range line {
 			num, _ := strconv.Atoi(string(char))
@@ -123,22 +121,15 @@ func SolveSecond(filename string) int {
 		}
 	}
 
-	fmt.Println(rows)
 	for rowIndex := 1; rowIndex < rowsTotal-1; rowIndex++ {
 
 		row := rows[rowIndex]
-		fmt.Println(row)
 
 		for i := 1; i < len(row)-1; i++ {
 			tree := row[i]
 
-			leftSide := row[:i]
-			// reverse left side
-			// for i, j := 0, len(leftSide)-1; i < j; i, j = i+1, j-1 {
-			// 	leftSide[i], leftSide[j] = leftSide[j], leftSide[i]
-			// }
 			rightSide := row[i+1:]
-
+			leftSide := make([]int, 0)
 			above := make([]int, 0)
 			below := make([]int, 0)
 
@@ -148,12 +139,13 @@ func SolveSecond(filename string) int {
 			for rI := rowIndex + 1; rI <= rowsTotal-1; rI++ {
 				below = append(below, rows[rI][i])
 			}
-
-			slices := [3][]int{rightSide, above, below}
+			for cI := i - 1; cI >= 0; cI-- {
+				leftSide = append(leftSide, row[cI])
+			}
 
 			numbers := [4]int{0, 0, 0, 0}
+			slices := [4][]int{rightSide, leftSide, above, below}
 			for sliceI, slice := range slices {
-
 				n := 0
 				for _, num := range slice {
 					n++
@@ -165,33 +157,10 @@ func SolveSecond(filename string) int {
 				numbers[sliceI] = n
 			}
 
-			// left  side needs to be done backwards
-			n := 0
-			for i := len(leftSide) - 1; i >= 0; i-- {
-				n++
-				if tree > leftSide[i] {
-					continue
-				}
-				break
-			}
-			numbers[3] = n
-
 			score := numbers[0] * numbers[1] * numbers[2] * numbers[3]
-
-			fmt.Printf("for tree %d in {%d,%d} we had %v which score %d\n", tree, rowIndex, i, numbers, score)
-
 			if score > highscore {
 				highscore = score
 			}
-
-			fmt.Println(tree)
-			fmt.Println(leftSide)
-			fmt.Println(rightSide)
-			fmt.Println(above)
-			fmt.Println(below)
-			fmt.Println()
-			fmt.Println()
-
 		}
 	}
 
