@@ -57,6 +57,42 @@ func SolveFirst(filename string) int {
 	count += (len(rows) * 2) + ((len(rows[0]) - 2) * 2)
 	return count
 }
+func SolveFirstFaster(filename string) int {
+	data, _ := filereader.ReadFileToStringArray(filename)
+	count := 0
+	rowsTotal := len(data)
+	rowLength := len(data[0])
+	rows := make([][]int, rowsTotal)
+	for rowIndex, line := range data {
+		for _, char := range line {
+			num, _ := strconv.Atoi(string(char))
+			rows[rowIndex] = append(rows[rowIndex], num)
+		}
+	}
+	for rowIndex := 0; rowIndex < len(rows[0]); rowIndex++ {
+		row := rows[rowIndex]
+
+		for col := 0; col < len(row); col++ {
+			tree := row[col]
+
+			above := make([]int, rowIndex+1)
+			below := make([]int, rowsTotal-1-rowIndex+1)
+			for k, l := rowIndex, 0; k >= 0; k, l = k-1, l+1 {
+				above[l] = rows[k][col]
+			}
+			for k, l := rowIndex, 0; k < rowsTotal; k, l = k+1, l+1 {
+				below[l] = rows[k][col]
+			}
+
+			a, b, c, d := isLeftClear(row, col, rowLength, tree), isRightClear(row, col, rowLength, tree), isNextClear(above, 0, tree), isNextClear(below, 0, tree)
+
+			if a || b || c || d {
+				count++
+			}
+		}
+	}
+	return count
+}
 
 func SolveSecond(filename string) int {
 	data, _ := filereader.ReadFileToStringArray(filename)
@@ -178,4 +214,42 @@ func findNext(slice []int, index int, tree int) int {
 		count += findNext(slice, index, tree)
 	}
 	return count
+}
+
+func isRightClear(row []int, c int, rowLength int, tree int) bool {
+	// is there any to the right?
+	if c > rowLength-2 {
+		return true
+	}
+	c += 1
+	newTree := row[c]
+	if tree > newTree {
+		return isRightClear(row, c, rowLength, tree)
+	}
+	return false
+}
+
+func isLeftClear(row []int, c int, rowLength int, tree int) bool {
+	// is there any to the right?
+	if c < 1 {
+		return true
+	}
+	c -= 1
+	newTree := row[c]
+	if tree > newTree {
+		return isLeftClear(row, c, rowLength, tree)
+	}
+	return false
+}
+
+func isNextClear(slice []int, index int, tree int) bool {
+	if index > len(slice)-2 {
+		return true
+	}
+	index += 1
+	newTree := slice[index]
+	if tree > newTree {
+		return isNextClear(slice, index, tree)
+	}
+	return false
 }
