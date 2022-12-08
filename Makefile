@@ -32,3 +32,7 @@ test-7:
 	go test -v github.com/christheoreo/advent-of-code-2022/day07 -count=1 # remove cache
 bench-7:
 	go test github.com/christheoreo/advent-of-code-2022/day07 -bench=. -benchmem -run=^$
+test-8:
+	go test -v github.com/christheoreo/advent-of-code-2022/day08 -count=1 # remove cache
+bench-8:
+	go test github.com/christheoreo/advent-of-code-2022/day08 -bench=. -benchmem -run=^$
