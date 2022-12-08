@@ -19,17 +19,6 @@ func TestSolveFirst(t *testing.T) {
 	fmt.Printf("\n-----\n --ANSWER Day 08 part 1 = %d \n-----\n", answer)
 }
 
-func TestSolveFirstFaster(t *testing.T) {
-	expected := 21
-	actual := SolveFirstFaster(testFile)
-	if expected != actual {
-		t.Errorf("Expected %d but got %d", expected, actual)
-		t.Fail()
-	}
-	answer := SolveFirstFaster(realFile)
-	fmt.Printf("\n-----\n --ANSWER Day 08 part 1 = %d \n-----\n", answer)
-}
-
 func TestSolveSecond(t *testing.T) {
 	expected := 8
 	actual := SolveSecond(testFile)
@@ -55,12 +44,6 @@ func TestSolveSecondB(t *testing.T) {
 func BenchmarkSolveFirst(b *testing.B) {
 	for n := 0; n < b.N; n++ {
 		SolveFirst(realFile)
-	}
-}
-
-func BenchmarkSolveFirstFaster(b *testing.B) {
-	for n := 0; n < b.N; n++ {
-		SolveFirstFaster(realFile)
 	}
 }
 
