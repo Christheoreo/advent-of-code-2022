@@ -77,6 +77,102 @@ func SolveSecond(filename string) int {
 		for i := 1; i < len(row)-1; i++ {
 			tree := row[i]
 			above := make([]int, rowIndex+1)
+			below := make([]int, rowsTotal-rowIndex)
+
+			right := make([]int, rowLength-i)
+			left := make([]int, i+1)
+
+			// right := make([]int, 5)
+			// left := make([]int, 5)
+			for k, l := rowIndex, 0; k >= 0; k, l = k-1, l+1 {
+				above[l] = rows[k][i]
+			}
+			for k, l := rowIndex, 0; k < rowsTotal; k, l = k+1, l+1 {
+				below[l] = rows[k][i]
+			}
+
+			for k, l := i, 0; k >= 0; k, l = k-1, l+1 {
+				left[l] = rows[rowIndex][k]
+			}
+			for k, l := i, 0; k < rowLength; k, l = k+1, l+1 {
+				right[l] = rows[rowIndex][k]
+			}
+			a, b, c, d := findNext(left, 0, tree), findNext(right, 0, tree), findNext(above, 0, tree), findNext(below, 0, tree)
+			score := a * b * c * d
+			// c, d := findNext(above, 0, tree), findNext(below, 0, tree)
+			// score := c * d
+			if score > highscore {
+				highscore = score
+			}
+		}
+	}
+
+	return highscore
+}
+
+func SolveSecondA(filename string) int {
+	data, _ := filereader.ReadFileToStringArray(filename)
+	highscore := 0
+	rowsTotal := len(data)
+	rows := make([][]int, rowsTotal)
+	rowLength := len(data[0])
+
+	// setup the ints
+	for rowIndex, line := range data {
+		for _, char := range line {
+			num, _ := strconv.Atoi(string(char))
+			rows[rowIndex] = append(rows[rowIndex], num)
+		}
+	}
+
+	for rowIndex := 1; rowIndex < rowsTotal-1; rowIndex++ {
+		row := rows[rowIndex]
+		for i := 1; i < len(row)-1; i++ {
+			tree := row[i]
+			above := make([]int, rowIndex+1)
+			below := make([]int, rowsTotal-1-rowIndex+1)
+			for k, l := rowIndex, 0; k >= 0; k, l = k-1, l+1 {
+				above[l] = rows[k][i]
+			}
+			for k, l := rowIndex, 0; k < rowsTotal; k, l = k+1, l+1 {
+				below[l] = rows[k][i]
+			}
+			a, b, c, d := findLeft(row, i, tree), findRight(row, i, rowLength, tree), findNext(above, 0, tree), findNext(below, 0, tree)
+			score := a * b * c * d
+			if score > highscore {
+				highscore = score
+			}
+		}
+	}
+
+	return highscore
+}
+
+func SolveSecondFaster(filename string) int {
+	data, _ := filereader.ReadFileToStringArray(filename)
+	highscore := 0
+	rowsTotal := len(data[0])
+	rowLength := len(data)
+	rows := make([][]int, rowsTotal)
+
+	// swapping the rows ands columns for faster reading
+	for i := 0; i < len(rows); i++ {
+		rows[i] = make([]int, rowLength)
+	}
+
+	// setup the ints
+	for rowIndex, line := range data {
+		for index, char := range line {
+			num, _ := strconv.Atoi(string(char))
+			rows[index][rowIndex] = num
+		}
+	}
+
+	for rowIndex := 1; rowIndex < rowsTotal-1; rowIndex++ {
+		row := rows[rowIndex]
+		for i := 1; i < len(row)-1; i++ {
+			tree := row[i]
+			above := make([]int, rowIndex+1)
 			below := make([]int, rowsTotal-1-rowIndex+1)
 			for k, l := rowIndex, 0; k >= 0; k, l = k-1, l+1 {
 				above[l] = rows[k][i]
@@ -123,15 +219,15 @@ func findLeft(row []int, c int, tree int) int {
 	return count
 }
 
-func findNext(col []int, r int, tree int) int {
+func findNext(slice []int, index int, tree int) int {
 	count := 1
-	if r > len(col)-2 {
+	if index > len(slice)-2 {
 		return 0
 	}
-	r += 1
-	newTree := col[r]
+	index += 1
+	newTree := slice[index]
 	if tree > newTree {
-		count += findNext(col, r, tree)
+		count += findNext(slice, index, tree)
 	}
 	return count
 }
