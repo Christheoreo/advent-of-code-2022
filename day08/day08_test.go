@@ -9,7 +9,7 @@ var testFile string = "problem-8-example.txt"
 var realFile string = "problem-8.txt"
 
 func TestSolveFirst(t *testing.T) {
-	expected := 0
+	expected := 21
 	actual := SolveFirst(testFile)
 	if expected != actual {
 		t.Errorf("Expected %d but got %d", expected, actual)
@@ -20,7 +20,7 @@ func TestSolveFirst(t *testing.T) {
 }
 
 func TestSolveSecond(t *testing.T) {
-	expected := 0
+	expected := 8
 	actual := SolveSecond(testFile)
 	if expected != actual {
 		t.Errorf("Expected %d but got %d", expected, actual)
