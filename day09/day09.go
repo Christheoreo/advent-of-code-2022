@@ -25,10 +25,8 @@ type Instruction struct {
 func SolveFirst(filename string) int {
 	data, _ := filereader.ReadFileToStringArray(filename)
 	instructions := make([]Instruction, len(data))
-	// positions := make([][2]int, 1)
-	positionsX := make(map[string]int)
-	// positions[0] = [2]int{0, 0}
-	positionsX["x0y0"] = 1
+	positions := make(map[string]int)
+	positions["x0y0"] = 1
 	h := [2]int{0, 0}
 	t := [2]int{0, 0}
 
@@ -41,8 +39,6 @@ func SolveFirst(filename string) int {
 		instructions[index] = instruction
 	}
 
-	// t - use direction - 1 and then carry the 1 over the next time
-
 	for _, instruction := range instructions {
 
 		for i := 0; i < instruction.Count; i++ {
@@ -50,10 +46,8 @@ func SolveFirst(filename string) int {
 				// Go Left
 				h[0] -= 1
 				if isInReach(h, t) {
-					// fmt.Printf("didn't move the tail as we moved the head %s by %d\n", instruction.Direction, instruction.Count)
 					continue
 				}
-				// fmt.Printf("Had to jump %s to X = %d Y = %d\n", instruction.Direction, t[0], t[1])
 				t[0] = h[0] + 1
 				t[1] = h[1]
 
@@ -61,10 +55,8 @@ func SolveFirst(filename string) int {
 				// Go Right
 				h[0] += 1
 				if isInReach(h, t) {
-					// fmt.Printf("didn't move the tail as we moved the head %s by %d\n", instruction.Direction, instruction.Count)
 					continue
 				}
-				// fmt.Printf("Had to jump %s to X = %d Y = %d\n", instruction.Direction, t[0], t[1])
 				t[0] = h[0] - 1
 				t[1] = h[1]
 
@@ -72,10 +64,8 @@ func SolveFirst(filename string) int {
 				// Go Up
 				h[1] += 1
 				if isInReach(h, t) {
-					// fmt.Printf("didn't move the tail as we moved the head %s by %d\n", instruction.Direction, instruction.Count)
 					continue
 				}
-				// fmt.Printf("Had to jump %s to X = %d Y = %d\n", instruction.Direction, t[0], t[1])
 				t[1] = h[1] - 1
 				t[0] = h[0]
 
@@ -84,27 +74,22 @@ func SolveFirst(filename string) int {
 				h[1] -= 1
 
 				if isInReach(h, t) {
-					// fmt.Printf("didn't move the tail as we moved the head %s by %d\n", instruction.Direction, instruction.Count)
 					continue
 				}
-				// fmt.Printf("Had to jump %s to X = %d Y = %d\n", instruction.Direction, t[0], t[1])
 				t[1] = h[1] + 1
 				t[0] = h[0]
 			}
 
 			key := fmt.Sprintf("x%dy%d", t[0], t[1])
-			_, ok := positionsX[key]
-			fmt.Printf("We were %s by %d and ended up at X = %d and Y = %d\n", instruction.Direction, instruction.Count, t[0], t[1])
+			_, ok := positions[key]
 			if !ok {
-				positionsX[key] = 1
+				positions[key] = 1
 				continue
 			}
-			positionsX[key]++
+			positions[key]++
 		}
-
-		// positions = append(positions, [2]int{t[0], t[1]})
 	}
-	return len(positionsX)
+	return len(positions)
 }
 func SolveSecond(filename string) int {
 	// data, _ := filereader.ReadFileToStringArray(filename)
