@@ -7,17 +7,7 @@ import (
 	"github.com/christheoreo/advent-of-code-2022/internal/filereader"
 )
 
-type Direction int64
-
-const (
-	Up Direction = iota
-	Down
-	Left
-	Right
-)
-
 type Instruction struct {
-	// Direction Direction
 	Direction string
 	Count     int
 }
@@ -90,10 +80,6 @@ func SolveFirst(filename string) int {
 		}
 	}
 	return len(positions)
-}
-func SolveSecond(filename string) int {
-	// data, _ := filereader.ReadFileToStringArray(filename)
-	return 0
 }
 
 func isInReach(head [2]int, tail [2]int) bool {

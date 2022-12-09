@@ -1,0 +1,175 @@
+package day09
+
+import (
+	"fmt"
+	"strconv"
+
+	"github.com/christheoreo/advent-of-code-2022/internal/filereader"
+)
+
+func SolveSecond(filename string) int {
+	data, _ := filereader.ReadFileToStringArray(filename)
+	instructions := make([]Instruction, len(data))
+	positions := make(map[string]int)
+	positions["x0y0"] = 1
+
+	snake := [10][2]int{
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+		{0, 0},
+	}
+
+	for index, val := range data {
+		num, _ := strconv.Atoi(val[2:])
+		instruction := Instruction{
+			Direction: string(val[0]),
+			Count:     num,
+		}
+		instructions[index] = instruction
+	}
+
+	// lastDirection := ""
+	for _, instruction := range instructions {
+		for i := 0; i < instruction.Count; i++ {
+			prevSnake := [2]int{snake[0][0], snake[0][1]}
+			// fmt.Println()
+			// fmt.Println()
+			// fmt.Println()
+			fmt.Println(prevSnake)
+			if instruction.Direction == "L" {
+				snake[0][0] -= 1
+			}
+
+			if instruction.Direction == "R" {
+				snake[0][0] += 1
+			}
+
+			if instruction.Direction == "D" {
+				snake[0][1] -= 1
+			}
+
+			if instruction.Direction == "U" {
+				snake[0][1] += 1
+			}
+			if i == 0 {
+				// only the head can move on the first move of a direction change
+				continue
+			}
+			fmt.Println(prevSnake)
+			fmt.Println()
+
+			// // fmt.Println(prevSnake)
+
+			// if isInReach(snake[1], snake[0]) {
+			// 	// fmt.Printf("Snake 1 is in reach of snake 0 (%v) (%v)\n", snake[1], snake[0])
+			// 	continue
+			// }
+
+			jump := getAmountToJump(snake[1], prevSnake)
+
+			// fmt.Printf("amount to jump from %v to %v = %v\n", snake[1], prevSnake, jump)
+
+			// snake[1] = prevSnake
+			// snake[1][0] = jump[0]
+
+			// depending oin the direction we went, thats what we have to move everyone else too
+
+			//
+			// for snakeIndex := 1; snakeIndex < len(snake); snakeIndex++ {
+			// 	nextPart := snake[snakeIndex]
+
+			// 	// if prevSnake[0] == nextPart[0] && prevSnake[1] == nextPart[1] {
+			// 	// 	// we cant move yet
+			// 	// 	break
+			// 	// }
+			// 	newPrevSnake := [2]int{nextPart[0], nextPart[1]}
+			// 	snake[snakeIndex] = prevSnake
+			// 	prevSnake = newPrevSnake
+			// }
+
+			snake[1] = prevSnake
+			if i == 1 {
+				for snakeIndex := 2; snakeIndex < len(snake); snakeIndex++ {
+
+					if snake[snakeIndex][0]+jump[0] == snake[snakeIndex-1][0] && snake[snakeIndex][1]+jump[1] == snake[snakeIndex-1][1] {
+						// cant do anything
+						break
+					}
+
+					snake[snakeIndex][0] += jump[0]
+					snake[snakeIndex][1] += jump[1]
+
+					// if snakeIndex == len(snake)-1 {
+					// 	break
+					// }
+					// nextSnake := snake[snakeIndex+1]
+
+					// if nextSnake[0]+jump[0] == snake[snakeIndex][0] && nextSnake[1]+jump[1] == snake[snakeIndex][1] {
+					// 	// we cant go anywhere!
+					// 	break
+					// }
+				}
+			} else {
+				// snake[1] = prevSnake
+				for snakeIndex := len(snake) - 1; snakeIndex > 1; snakeIndex-- {
+					snake[snakeIndex] = snake[snakeIndex-1]
+				}
+			}
+
+			for snakeIndex := 1; snakeIndex < len(snake); snakeIndex++ {
+
+				if snake[snakeIndex][0]+jump[0] == snake[snakeIndex-1][0] && snake[snakeIndex][1]+jump[1] == snake[snakeIndex-1][1] {
+					// cant do anything
+					break
+				}
+
+				snake[snakeIndex][0] += jump[0]
+				snake[snakeIndex][1] += jump[1]
+
+				// if snakeIndex == len(snake)-1 {
+				// 	break
+				// }
+				// nextSnake := snake[snakeIndex+1]
+
+				// if nextSnake[0]+jump[0] == snake[snakeIndex][0] && nextSnake[1]+jump[1] == snake[snakeIndex][1] {
+				// 	// we cant go anywhere!
+				// 	break
+				// }
+			}
+
+			// for snakeIndex := len(snake) - 1; snakeIndex > 1; snakeIndex-- {
+			// 	snake[snakeIndex] = snake[snakeIndex-1]
+			// }
+
+			// for snakeIndex := len(snake) - 1; snakeIndex > 1; snakeIndex-- {
+			// 	snake[snakeIndex][0] += snake[snakeIndex-1]
+			// }
+
+			// fmt.Println(snake[9])
+
+			key := fmt.Sprintf("x%dy%d", snake[9][0], snake[9][1])
+			_, ok := positions[key]
+			if !ok {
+				positions[key] = 1
+				continue
+			}
+			positions[key]++
+		}
+	}
+
+	return len(positions)
+}
+
+func getAmountToJump(currentPos [2]int, newPos [2]int) [2]int {
+	xDiff := newPos[0] - currentPos[0]
+	yDiff := newPos[1] - currentPos[1]
+
+	return [2]int{xDiff, yDiff}
+}
