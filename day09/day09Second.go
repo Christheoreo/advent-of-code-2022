@@ -42,8 +42,6 @@ func SolveSecond(filename string) int {
 		"R": 1,
 	}
 
-	// lastDirection := ""
-
 	for _, instruction := range instructions {
 
 		for i := 0; i < instruction.Count; i++ {
@@ -110,10 +108,3 @@ func SolveSecond(filename string) int {
 
 	return len(positions)
 }
-
-// func getAmountToJump(currentPos [2]int, newPos [2]int) [2]int {
-// 	xDiff := newPos[0] - currentPos[0]
-// 	yDiff := newPos[1] - currentPos[1]
-
-// 	return [2]int{xDiff, yDiff}
-// }
