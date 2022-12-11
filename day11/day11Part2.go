@@ -206,13 +206,14 @@ func subTractStrings(stringOne string, stringTwo string) string {
 	return answer
 }
 
+// this needs tweaking - better way to get this done
 func isDivisible(stringOne string, by string) bool {
 	// i := stringOne
 	// fmt.Println(stringOne)
 
 	// NOTE - try and do {by} with as many zeros as possible, until we get down to as smaller as possible.
 	x := by
-	for i := 0; i < len(stringOne)-1; i++ {
+	for i := 0; i < len(stringOne)-3; i++ {
 		x += "0"
 	}
 	i := subTractStrings(stringOne, x)
@@ -228,14 +229,15 @@ func isDivisible(stringOne string, by string) bool {
 
 		}
 
-		b := by
+		// b := by
 
-		for k := 0; k < len(i)-6; k++ {
-			b += "0"
-		}
+		// for k := 0; k < len(i)-6; k++ {
+		// 	b += "0"
+		// }
 
-		newI := subTractStrings(i, b)
+		newI := subTractStrings(i, by)
 		i = newI
+		fmt.Println(i)
 	}
 }
 

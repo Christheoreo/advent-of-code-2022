@@ -20,19 +20,19 @@ var realFile string = "problem-11.txt"
 // 	fmt.Printf("\n-----\n --ANSWER Day 11 part 1 = %d \n-----\n", answer)
 // }
 
-func TestSolveSecond(t *testing.T) {
+// func TestSolveSecond(t *testing.T) {
 
-	expected := 2713310158
-	actual := SolveSecond(testFile)
+// 	expected := 2713310158
+// 	actual := SolveSecond(testFile)
 
-	if expected != actual {
-		t.Errorf("Expected %d but got %d", expected, actual)
-		t.Fail()
-	}
+// 	if expected != actual {
+// 		t.Errorf("Expected %d but got %d", expected, actual)
+// 		t.Fail()
+// 	}
 
-	// answer := SolveSecond(realFile)
-	// fmt.Printf("\n-----\n --ANSWER Day 11 part 2 = %d \n-----\n", answer)
-}
+// 	// answer := SolveSecond(realFile)
+// 	// fmt.Printf("\n-----\n --ANSWER Day 11 part 2 = %d \n-----\n", answer)
+// }
 
 func TestStringAddition(t *testing.T) {
 	expected := "1010478"
@@ -116,6 +116,19 @@ func TestSubtractStringsB(t *testing.T) {
 	expected := "1"
 	strOne := "11"
 	stringTwo := "10"
+
+	actual := subTractStrings(strOne, stringTwo)
+
+	if expected != actual {
+		t.Errorf("Expected %s but got %s", expected, actual)
+		t.Fail()
+	}
+}
+
+func TestSubtractStringsC(t *testing.T) {
+	expected := "11238746823648264386332"
+	strOne := "11238746823648264386432"
+	stringTwo := "100"
 
 	actual := subTractStrings(strOne, stringTwo)
 
