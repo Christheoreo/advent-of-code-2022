@@ -229,13 +229,46 @@ func TestStringIsDivisableF(t *testing.T) {
 	}
 }
 
-func BenchmarkSolveFirst(b *testing.B) {
+// func BenchmarkSolveFirst(b *testing.B) {
+// 	for n := 0; n < b.N; n++ {
+// 		SolveFirst(realFile)
+// 	}
+// }
+
+// func BenchmarkSolveSecond(b *testing.B) {
+// 	for n := 0; n < b.N; n++ {
+// 		SolveSecond(realFile)
+// 	}
+// }
+
+func BenchmarkAddition(b *testing.B) {
+	const strOne = "24726487236487236487236487236487"
+	const strTwo = "2472648723648723648723648723648712321312"
 	for n := 0; n < b.N; n++ {
-		SolveFirst(realFile)
+		addStrings(strOne, strTwo)
 	}
 }
-func BenchmarkSolveSecond(b *testing.B) {
+
+func BenchmarkMultiplication(b *testing.B) {
+	const strOne = "24726487236487236487236487236487"
+	const strTwo = "2472648723648723648723648723648712321312"
 	for n := 0; n < b.N; n++ {
-		SolveSecond(realFile)
+		multiplyStrings(strOne, strTwo)
+	}
+}
+
+func BenchmarkSubTraction(b *testing.B) {
+	const strOne = "24726487236487236487236487236487"
+	const strTwo = "24726487236487236487236487236"
+	for n := 0; n < b.N; n++ {
+		subTractStrings(strOne, strTwo)
+	}
+}
+
+func BenchmarkDivisable(b *testing.B) {
+	const strOne = "24726487236487236487236487236487"
+	const strTwo = "12312"
+	for n := 0; n < b.N; n++ {
+		isDivisible(strOne, strTwo)
 	}
 }

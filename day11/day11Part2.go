@@ -54,7 +54,7 @@ func SolveSecond(filename string) int {
 				// now test it
 
 				// alway is diviisble
-
+				// fmt.Printf("dividing\n")
 				if isDivisible(newItem, monkey.TestNumber) {
 					// fmt.Printf("Current worry level is divisible by %d.\n", monkey.TestNumber)
 					// fmt.Printf("Item with worry level %d is thrown to monkey %d\n", item, monkey.TrueOutcome)
@@ -65,6 +65,7 @@ func SolveSecond(filename string) int {
 					// fmt.Printf("Item with worry level %d is thrown to monkey %d\n", item, monkey.FalseOutcome)
 					monkeys[monkey.FalseOutcome].StartingItems = append(monkeys[monkey.FalseOutcome].StartingItems, newItem)
 				}
+				// fmt.Printf("Done dividing\n")
 			}
 			// clear this monkeys items
 			monkey.StartingItems = make([]string, 0)
