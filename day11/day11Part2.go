@@ -208,6 +208,8 @@ func subTractStrings(stringOne string, stringTwo string) string {
 func isDivisible(stringOne string, by string) bool {
 	i := stringOne
 	// fmt.Println(stringOne)
+
+	// NOTE - try and do {by} with as many zeros as possible, until we get down to as smaller as possible.
 	for {
 		if i == "0" {
 			return true
