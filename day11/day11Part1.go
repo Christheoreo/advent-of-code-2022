@@ -22,73 +22,7 @@ type Monkey struct {
 
 func SolveFirst(filename string) int {
 	data, _ := filereader.ReadFileToStringArray(filename)
-	monkeys := make([]*Monkey, 0)
-
-	var monkey *Monkey
-	for _, line := range data {
-		if len(line) < 1 {
-			// monkeys = append(monkeys, monkey)
-			continue
-		}
-		if string(line[0]) == "M" {
-			monkey = &Monkey{}
-			monkey.StartingItems = make([]int, 0)
-			continue
-		}
-
-		if strings.Contains(line, "items") {
-			start := line[18:]
-
-			numbersS := strings.Split(start, ", ")
-			fmt.Println(numbersS)
-			for _, numS := range numbersS {
-				num, _ := strconv.Atoi(numS)
-				monkey.StartingItems = append(monkey.StartingItems, num)
-			}
-		}
-
-		if strings.Contains(line, "Operation") {
-			thing := strings.Split(line, "=")[1]
-			thing = strings.TrimSpace(thing)
-			x := strings.Split(thing, " ")
-			monkey.Operation = x[1]
-
-			if x[2] == "old" {
-				// use this as a special case
-				monkey.OperationNumber = -1
-			} else {
-				num, _ := strconv.Atoi(x[2])
-				monkey.OperationNumber = num
-			}
-			continue
-		}
-
-		if strings.Contains(line, "Test") {
-			//always seems rto be divisible
-
-			num, _ := strconv.Atoi(line[21:])
-			monkey.TestNumber = num
-			monkey.Test = "/"
-			continue
-		}
-
-		if strings.Contains(line, "true") {
-			num, _ := strconv.Atoi(line[29:])
-			// fmt.Printf("true outcome = %d\n", num)
-			monkey.TrueOutcome = num
-			continue
-		}
-
-		if strings.Contains(line, "false") {
-			num, _ := strconv.Atoi(line[30:])
-			monkey.FalseOutcome = num
-			// fmt.Printf("false outcome = %d\n", num)
-
-			monkeys = append(monkeys, monkey)
-			continue
-		}
-
-	}
+	monkeys := setupMonkeys(data)
 
 	// fmt.Printf("Monkeys length = %d\n", len(monkeys))
 
@@ -164,8 +98,73 @@ func SolveFirst(filename string) int {
 	}
 	return a * b
 }
-func SolveSecond(filename string) int {
-	// data, _ := filereader.ReadFileToStringArray(filename)
 
-	return 0
+func setupMonkeys(data []string) []*Monkey {
+	monkeys := make([]*Monkey, 0)
+	var monkey *Monkey
+	for _, line := range data {
+		if len(line) < 1 {
+			// monkeys = append(monkeys, monkey)
+			continue
+		}
+		if string(line[0]) == "M" {
+			monkey = &Monkey{}
+			monkey.StartingItems = make([]int, 0)
+			continue
+		}
+
+		if strings.Contains(line, "items") {
+			start := line[18:]
+
+			numbersS := strings.Split(start, ", ")
+			fmt.Println(numbersS)
+			for _, numS := range numbersS {
+				num, _ := strconv.Atoi(numS)
+				monkey.StartingItems = append(monkey.StartingItems, num)
+			}
+		}
+
+		if strings.Contains(line, "Operation") {
+			thing := strings.Split(line, "=")[1]
+			thing = strings.TrimSpace(thing)
+			x := strings.Split(thing, " ")
+			monkey.Operation = x[1]
+
+			if x[2] == "old" {
+				// use this as a special case
+				monkey.OperationNumber = -1
+			} else {
+				num, _ := strconv.Atoi(x[2])
+				monkey.OperationNumber = num
+			}
+			continue
+		}
+
+		if strings.Contains(line, "Test") {
+			//always seems rto be divisible
+
+			num, _ := strconv.Atoi(line[21:])
+			monkey.TestNumber = num
+			monkey.Test = "/"
+			continue
+		}
+
+		if strings.Contains(line, "true") {
+			num, _ := strconv.Atoi(line[29:])
+			// fmt.Printf("true outcome = %d\n", num)
+			monkey.TrueOutcome = num
+			continue
+		}
+
+		if strings.Contains(line, "false") {
+			num, _ := strconv.Atoi(line[30:])
+			monkey.FalseOutcome = num
+			// fmt.Printf("false outcome = %d\n", num)
+
+			monkeys = append(monkeys, monkey)
+			continue
+		}
+
+	}
+	return monkeys
 }
