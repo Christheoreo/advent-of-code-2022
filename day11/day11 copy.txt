@@ -94,75 +94,70 @@ func SolveFirst(filename string) int {
 
 	monkeyIndex := 0
 	for turn := 0; turn < 20; turn++ {
+		//
+		monkey := monkeys[monkeyIndex]
 
-		for _, monkey := range monkeys {
+		for itemIndex := 0; itemIndex < len(monkey.StartingItems); itemIndex++ {
+			item := monkey.StartingItems[itemIndex]
+			monkey.InspectionCount++
 
-			for itemIndex := 0; itemIndex < len(monkey.StartingItems); itemIndex++ {
-				item := monkey.StartingItems[itemIndex]
-				monkey.InspectionCount++
+			fmt.Printf("Monkey %d is inspecting an item with a worry level of %d\n", monkeyIndex, item)
 
-				fmt.Printf("Monkey %d is inspecting an item with a worry level of %d\n", monkeyIndex, item)
-
-				if monkey.Operation == "*" {
-					if monkey.OperationNumber == -1 {
-						fmt.Printf("Worry level is multiplied by %d to %d\n", item, item*item)
-						item = item * item
-					} else {
-						fmt.Printf("Worry level is multiplied by %d to %d\n", item, item*monkey.OperationNumber)
-						item = item * monkey.OperationNumber
-					}
-				} else if monkey.Operation == "+" {
-					if monkey.OperationNumber == -1 {
-						fmt.Printf("Worry level increases by %d to %d\n", item, item+item)
-						item = item + item
-					} else {
-						fmt.Printf("Worry level increases by %d to %d\n", item, item+monkey.OperationNumber)
-						item = item + monkey.OperationNumber
-					}
-				}
-
-				// now we divide by 3 and round down to the nereast
-
-				fmt.Printf("Item befroe dividng by 3 = %d\n", item)
-				item = int(math.Floor(float64(item) / 3))
-
-				fmt.Printf("Item after dividng by 3 = %d\n", item)
-
-				// now test it
-
-				// alway is diviisble
-
-				if item%monkey.TestNumber == 0 {
-					fmt.Printf("Current worry level is divisible by %d.\n", monkey.TestNumber)
-					fmt.Printf("Item with worry level %d is thrown to monkey %d\n", item, monkey.TrueOutcome)
-					// pass the item to another monkey
-					monkeys[monkey.TrueOutcome].StartingItems = append(monkeys[monkey.TrueOutcome].StartingItems, item)
+			if monkey.Operation == "*" {
+				if monkey.OperationNumber == -1 {
+					fmt.Printf("Worry level is multiplied by %d to %d\n", item, item*item)
+					item = item * item
 				} else {
-					fmt.Printf("Current worry level is not divisible by %d.\n", monkey.TestNumber)
-					fmt.Printf("Item with worry level %d is thrown to monkey %d\n", item, monkey.FalseOutcome)
-					monkeys[monkey.FalseOutcome].StartingItems = append(monkeys[monkey.FalseOutcome].StartingItems, item)
+					fmt.Printf("Worry level is multiplied by %d to %d\n", item, item*monkey.OperationNumber)
+					item = item * monkey.OperationNumber
 				}
-
+			} else if monkey.Operation == "+" {
+				if monkey.OperationNumber == -1 {
+					fmt.Printf("Worry level increases by %d to %d\n", item, item+item)
+					item = item + item
+				} else {
+					fmt.Printf("Worry level increases by %d to %d\n", item, item+monkey.OperationNumber)
+					item = item + monkey.OperationNumber
+				}
 			}
-			// clear this monkeys items
-			monkey.StartingItems = make([]int, 0)
-		}
-	}
 
-	a, b := 0, 0
+			// now we divide by 3 and round down to the nereast
+
+			fmt.Printf("Item befroe dividng by 3 = %d\n", item)
+			item = int(math.Floor(float64(item) / 3))
+
+			fmt.Printf("Item after dividng by 3 = %d\n", item)
+
+			// now test it
+
+			// alway is diviisble
+
+			if item%monkey.TestNumber == 0 {
+				fmt.Printf("Current worry level is divisible by %d.\n", monkey.TestNumber)
+				fmt.Printf("Item with worry level %d is thrown to monkey %d\n", item, monkey.TrueOutcome)
+				// pass the item to another monkey
+				monkeys[monkey.TrueOutcome].StartingItems = append(monkeys[monkey.TrueOutcome].StartingItems, item)
+			} else {
+				fmt.Printf("Current worry level is not divisible by %d.\n", monkey.TestNumber)
+				fmt.Printf("Item with worry level %d is thrown to monkey %d\n", item, monkey.FalseOutcome)
+				monkeys[monkey.FalseOutcome].StartingItems = append(monkeys[monkey.FalseOutcome].StartingItems, item)
+			}
+
+		}
+		// clear this monkeys items
+		monkey.StartingItems = make([]int, 0)
+
+		if monkeyIndex+1 > len(monkeys)-1 {
+			monkeyIndex = 0
+			continue
+		}
+		monkeyIndex++
+	}
 
 	for i, m := range monkeys {
 		fmt.Printf("monkey %d inspected items %d times.\n", i, m.InspectionCount)
-		if m.InspectionCount > a {
-			b = a
-			a = m.InspectionCount
-			continue
-		}
-		if m.InspectionCount >= b {
-			b = m.InspectionCount
-		}
 	}
-	return a * b
+	return 0
 }
 func SolveSecond(filename string) int {
 	// data, _ := filereader.ReadFileToStringArray(filename)
