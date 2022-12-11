@@ -177,6 +177,19 @@ func TestStringIsDivisableC(t *testing.T) {
 	}
 }
 
+func TestStringIsDivisableD(t *testing.T) {
+	expected := true
+	strOne := "6900000000000"
+	by := "107"
+
+	actual := isDivisible(strOne, by)
+
+	if expected != actual {
+		t.Errorf("Expected %v but got %v", expected, actual)
+		t.Fail()
+	}
+}
+
 func BenchmarkSolveFirst(b *testing.B) {
 	for n := 0; n < b.N; n++ {
 		SolveFirst(realFile)

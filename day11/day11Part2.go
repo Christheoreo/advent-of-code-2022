@@ -23,7 +23,9 @@ func SolveSecond(filename string) int {
 	data, _ := filereader.ReadFileToStringArray(filename)
 	monkeys := setupMonkeysA(data)
 
-	for turn := 0; turn < 1000; turn++ {
+	for turn := 0; turn < 20; turn++ {
+
+		fmt.Println(turn)
 
 		for _, monkey := range monkeys {
 			monkey.InspectionCount += len(monkey.StartingItems)
@@ -34,19 +36,19 @@ func SolveSecond(filename string) int {
 					if monkey.OperationNumber == "-1" {
 						// fmt.Printf("Worry level is multiplied by %d to %d\n", item, item*item)
 						newItem = multiplyStrings(item, item)
-						fmt.Printf("%s and %s = %s\n", item, item, newItem)
+						// fmt.Printf("%s and %s = %s\n", item, item, newItem)
 					} else {
 						// fmt.Printf("Worry level is multiplied by %d to %d\n", item, item*monkey.OperationNumber)
 						newItem = multiplyStrings(item, monkey.OperationNumber)
-						fmt.Printf("%s and %s = %s\n", item, monkey.OperationNumber, newItem)
+						// fmt.Printf("%s and %s = %s\n", item, monkey.OperationNumber, newItem)
 					}
 				} else if monkey.Operation == "+" {
 					if monkey.OperationNumber == "-1" {
 						newItem = addStrings(item, item)
-						fmt.Printf("Worry level increases by %s to %s\n", item, newItem)
+						// fmt.Printf("Worry level increases by %s to %s\n", item, newItem)
 					} else {
 						newItem = addStrings(item, monkey.OperationNumber)
-						fmt.Printf("Worry level increases by %s to %s\n", item, newItem)
+						// fmt.Printf("Worry level increases by %s to %s\n", item, newItem)
 					}
 				}
 				// now test it
@@ -88,7 +90,6 @@ func SolveSecond(filename string) int {
 func multiplyStrings(stringOne string, stringTwo string) string {
 
 	// we need to start from the smallest
-
 	smallest := ""
 	largest := ""
 
@@ -206,30 +207,34 @@ func subTractStrings(stringOne string, stringTwo string) string {
 }
 
 func isDivisible(stringOne string, by string) bool {
-	i := stringOne
+	// i := stringOne
 	// fmt.Println(stringOne)
 
 	// NOTE - try and do {by} with as many zeros as possible, until we get down to as smaller as possible.
+	x := by
+	for i := 0; i < len(stringOne)-1; i++ {
+		x += "0"
+	}
+	i := subTractStrings(stringOne, x)
+	fmt.Printf("i is now %s and was %s and is beoing divided by %s --- %s\n", i, stringOne, by, x)
 	for {
-		if i == "0" {
-			return true
-		}
 
-		if len(i) < 4 {
+		if len(i) < 7 {
 
 			num, _ := strconv.Atoi(i)
 			num2, _ := strconv.Atoi(by)
 
-			if num-num2 < 0 {
-				return false
-			}
-			// if num < 0 {
-			// 	return false
-			// }
+			return num%num2 == 0
+
 		}
 
-		newI := subTractStrings(i, by)
-		// fmt.Printf("%s - %s = %s\n", i, by, newI)
+		b := by
+
+		for k := 0; k < len(i)-6; k++ {
+			b += "0"
+		}
+
+		newI := subTractStrings(i, b)
 		i = newI
 	}
 }
