@@ -19,11 +19,11 @@ type MonkeyA struct {
 	InspectionCount int
 }
 
-func SolveSecond(filename string) int {
+func SolveSecond(filename string, turns int) int {
 	data, _ := filereader.ReadFileToStringArray(filename)
 	monkeys := setupMonkeysA(data)
 
-	for turn := 0; turn < 10000; turn++ {
+	for turn := 0; turn < turns; turn++ {
 
 		fmt.Println(turn)
 

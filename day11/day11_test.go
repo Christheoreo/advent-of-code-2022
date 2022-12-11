@@ -1,6 +1,7 @@
 package day11
 
 import (
+	"fmt"
 	"testing"
 )
 
@@ -20,10 +21,43 @@ var realFile string = "problem-11.txt"
 // 	fmt.Printf("\n-----\n --ANSWER Day 11 part 1 = %d \n-----\n", answer)
 // }
 
-func TestSolveSecond(t *testing.T) {
+func TestSolveSecondA(t *testing.T) {
+
+	expected := 24
+	actual := SolveSecond(testFile, 1)
+
+	if expected != actual {
+		t.Errorf("Expected %d but got %d", expected, actual)
+		t.Fail()
+	}
+}
+
+func TestSolveSecondB(t *testing.T) {
+
+	expected := 10197
+	actual := SolveSecond(testFile, 20)
+
+	if expected != actual {
+		t.Errorf("Expected %d but got %d", expected, actual)
+		t.Fail()
+	}
+}
+
+func TestSolveSecondC(t *testing.T) {
+
+	expected := 27019168
+	actual := SolveSecond(testFile, 1000)
+
+	if expected != actual {
+		t.Errorf("Expected %d but got %d", expected, actual)
+		t.Fail()
+	}
+}
+
+func TestSolveSecondD(t *testing.T) {
 
 	expected := 2713310158
-	actual := SolveSecond(testFile)
+	actual := SolveSecond(testFile, 10000)
 
 	if expected != actual {
 		t.Errorf("Expected %d but got %d", expected, actual)
@@ -32,6 +66,18 @@ func TestSolveSecond(t *testing.T) {
 
 	// answer := SolveSecond(realFile)
 	// fmt.Printf("\n-----\n --ANSWER Day 11 part 2 = %d \n-----\n", answer)
+}
+
+func TestSolveSecond(t *testing.T) {
+
+	expected := 0
+	actual := SolveSecond(realFile, 10000)
+
+	if expected == actual {
+		t.Errorf("Did not expect %d", expected)
+		t.Fail()
+	}
+	fmt.Printf("\n-----\n --ANSWER Day 11 part 2 = %d \n-----\n", actual)
 }
 
 func TestStringAddition(t *testing.T) {
