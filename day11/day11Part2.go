@@ -23,7 +23,7 @@ func SolveSecond(filename string) int {
 	data, _ := filereader.ReadFileToStringArray(filename)
 	monkeys := setupMonkeysA(data)
 
-	for turn := 0; turn < 1000; turn++ {
+	for turn := 0; turn < 10000; turn++ {
 
 		fmt.Println(turn)
 
