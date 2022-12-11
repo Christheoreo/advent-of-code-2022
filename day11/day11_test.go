@@ -20,19 +20,19 @@ var realFile string = "problem-11.txt"
 // 	fmt.Printf("\n-----\n --ANSWER Day 11 part 1 = %d \n-----\n", answer)
 // }
 
-// func TestSolveSecond(t *testing.T) {
+func TestSolveSecond(t *testing.T) {
 
-// 	expected := 2713310158
-// 	actual := SolveSecond(testFile)
+	expected := 2713310158
+	actual := SolveSecond(testFile)
 
-// 	if expected != actual {
-// 		t.Errorf("Expected %d but got %d", expected, actual)
-// 		t.Fail()
-// 	}
+	if expected != actual {
+		t.Errorf("Expected %d but got %d", expected, actual)
+		t.Fail()
+	}
 
-// 	// answer := SolveSecond(realFile)
-// 	// fmt.Printf("\n-----\n --ANSWER Day 11 part 2 = %d \n-----\n", answer)
-// }
+	// answer := SolveSecond(realFile)
+	// fmt.Printf("\n-----\n --ANSWER Day 11 part 2 = %d \n-----\n", answer)
+}
 
 func TestStringAddition(t *testing.T) {
 	expected := "1010478"
@@ -191,9 +191,35 @@ func TestStringIsDivisableC(t *testing.T) {
 }
 
 func TestStringIsDivisableD(t *testing.T) {
-	expected := true
+	expected := false
 	strOne := "6900000000000"
 	by := "107"
+
+	actual := isDivisible(strOne, by)
+
+	if expected != actual {
+		t.Errorf("Expected %v but got %v", expected, actual)
+		t.Fail()
+	}
+}
+
+func TestStringIsDivisableE(t *testing.T) {
+	expected := false
+	strOne := "300000000000002"
+	by := "3"
+
+	actual := isDivisible(strOne, by)
+
+	if expected != actual {
+		t.Errorf("Expected %v but got %v", expected, actual)
+		t.Fail()
+	}
+}
+
+func TestStringIsDivisableF(t *testing.T) {
+	expected := true
+	strOne := "300000000000003"
+	by := "3"
 
 	actual := isDivisible(strOne, by)
 

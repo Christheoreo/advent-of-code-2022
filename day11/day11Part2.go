@@ -23,7 +23,7 @@ func SolveSecond(filename string) int {
 	data, _ := filereader.ReadFileToStringArray(filename)
 	monkeys := setupMonkeysA(data)
 
-	for turn := 0; turn < 20; turn++ {
+	for turn := 0; turn < 1000; turn++ {
 
 		fmt.Println(turn)
 
@@ -217,7 +217,7 @@ func isDivisible(stringOne string, by string) bool {
 		x += "0"
 	}
 	i := subTractStrings(stringOne, x)
-	fmt.Printf("i is now %s and was %s and is beoing divided by %s --- %s\n", i, stringOne, by, x)
+	// fmt.Printf("i is now %s and was %s and is beoing divided by %s --- %s\n", i, stringOne, by, x)
 	for {
 
 		if len(i) < 7 {
@@ -226,7 +226,14 @@ func isDivisible(stringOne string, by string) bool {
 			num2, _ := strconv.Atoi(by)
 
 			return num%num2 == 0
+		}
 
+		length := len(i)
+
+		b := by
+
+		for k := 0; k < length-1-len(by); k++ {
+			b += "0"
 		}
 
 		// b := by
@@ -235,9 +242,9 @@ func isDivisible(stringOne string, by string) bool {
 		// 	b += "0"
 		// }
 
-		newI := subTractStrings(i, by)
+		newI := subTractStrings(i, b)
 		i = newI
-		fmt.Println(i)
+		// fmt.Println(i)
 	}
 }
 
