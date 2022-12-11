@@ -34,6 +34,149 @@ func TestSolveSecond(t *testing.T) {
 	// fmt.Printf("\n-----\n --ANSWER Day 11 part 2 = %d \n-----\n", answer)
 }
 
+func TestStringAddition(t *testing.T) {
+	expected := "1010478"
+	strOne := "454689"
+	strTwo := "555789"
+
+	actual := addStrings(strOne, strTwo)
+
+	if expected != actual {
+		t.Errorf("Expected %s but got %s", expected, actual)
+		t.Fail()
+	}
+}
+
+func TestStringAdditionA(t *testing.T) {
+	expected := "601257"
+	strOne := "45468"
+	strTwo := "555789"
+
+	actual := addStrings(strOne, strTwo)
+
+	if expected != actual {
+		t.Errorf("Expected %s but got %s", expected, actual)
+		t.Fail()
+	}
+}
+
+func TestStringMultiply(t *testing.T) {
+	expected := "1480"
+	strOne := "40"
+	strTwo := "37"
+
+	actual := multiplyStrings(strOne, strTwo)
+
+	if expected != actual {
+		t.Errorf("Expected %s but got %s", expected, actual)
+		t.Fail()
+	}
+}
+
+func TestStringMultiplyA(t *testing.T) {
+	expected := "8604460"
+	strOne := "436"
+	strTwo := "19735"
+
+	actual := multiplyStrings(strOne, strTwo)
+
+	if expected != actual {
+		t.Errorf("Expected %s but got %s", expected, actual)
+		t.Fail()
+	}
+}
+
+func TestSubtractStrings(t *testing.T) {
+	expected := "6"
+	strOne := "9"
+	stringTwo := "3"
+
+	actual := subTractStrings(strOne, stringTwo)
+
+	if expected != actual {
+		t.Errorf("Expected %s but got %s", expected, actual)
+		t.Fail()
+	}
+}
+
+func TestSubtractStringsA(t *testing.T) {
+	expected := "120"
+	strOne := "200"
+	stringTwo := "80"
+
+	actual := subTractStrings(strOne, stringTwo)
+
+	if expected != actual {
+		t.Errorf("Expected %s but got %s", expected, actual)
+		t.Fail()
+	}
+}
+
+func TestSubtractStringsB(t *testing.T) {
+	expected := "1"
+	strOne := "11"
+	stringTwo := "10"
+
+	actual := subTractStrings(strOne, stringTwo)
+
+	if expected != actual {
+		t.Errorf("Expected %s but got %s", expected, actual)
+		t.Fail()
+	}
+}
+
+func TestStringIsDivisable(t *testing.T) {
+	expected := true
+	strOne := "9"
+	by := "3"
+
+	actual := isDivisible(strOne, by)
+
+	if expected != actual {
+		t.Errorf("Expected %v but got %v", expected, actual)
+		t.Fail()
+	}
+}
+
+func TestStringIsDivisableA(t *testing.T) {
+	expected := false
+	strOne := "22"
+	by := "3"
+
+	actual := isDivisible(strOne, by)
+
+	if expected != actual {
+		t.Errorf("Expected %v but got %v", expected, actual)
+		t.Fail()
+	}
+}
+
+func TestStringIsDivisableB(t *testing.T) {
+	expected := true
+	strOne := "69"
+	by := "3"
+
+	actual := isDivisible(strOne, by)
+
+	if expected != actual {
+		t.Errorf("Expected %v but got %v", expected, actual)
+		t.Fail()
+	}
+}
+
+func TestStringIsDivisableC(t *testing.T) {
+	expected := true
+	strOne := "69"
+	by := "3"
+
+	actual := isDivisible(strOne, by)
+
+	if expected != actual {
+		t.Errorf("Expected %v but got %v", expected, actual)
+		t.Fail()
+	}
+}
+
 func BenchmarkSolveFirst(b *testing.B) {
 	for n := 0; n < b.N; n++ {
 		SolveFirst(realFile)
