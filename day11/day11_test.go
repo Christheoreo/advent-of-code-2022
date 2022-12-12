@@ -21,7 +21,7 @@ var realFile string = "problem-11.txt"
 // 	fmt.Printf("\n-----\n --ANSWER Day 11 part 1 = %d \n-----\n", answer)
 // }
 
-func TestSolveSecondA(t *testing.T) {
+func TestSolveSecond(t *testing.T) {
 
 	expected := 24
 	actual := SolveSecond(testFile, 1)
@@ -30,291 +30,50 @@ func TestSolveSecondA(t *testing.T) {
 		t.Errorf("Expected %d but got %d", expected, actual)
 		t.Fail()
 	}
-}
 
-func TestSolveSecondB(t *testing.T) {
-
-	expected := 10197
-	actual := SolveSecond(testFile, 20)
-
-	if expected != actual {
-		t.Errorf("Expected %d but got %d", expected, actual)
-		t.Fail()
-	}
-}
-
-func TestSolveSecondC(t *testing.T) {
-
-	expected := 27019168
-	actual := SolveSecond(testFile, 1000)
-
-	if expected != actual {
-		t.Errorf("Expected %d but got %d", expected, actual)
-		t.Fail()
-	}
-}
-
-func TestSolveSecondD(t *testing.T) {
-
-	expected := 2713310158
-	actual := SolveSecond(testFile, 10000)
+	expected = 10197
+	actual = SolveSecond(testFile, 20)
 
 	if expected != actual {
 		t.Errorf("Expected %d but got %d", expected, actual)
 		t.Fail()
 	}
 
-	// answer := SolveSecond(realFile)
-	// fmt.Printf("\n-----\n --ANSWER Day 11 part 2 = %d \n-----\n", answer)
-}
+	expected = 27019168
+	actual = SolveSecond(testFile, 1000)
 
-func TestSolveSecond(t *testing.T) {
+	if expected != actual {
+		t.Errorf("Expected %d but got %d", expected, actual)
+		t.Fail()
+	}
 
-	expected := 0
-	actual := SolveSecond(realFile, 10000)
+	expected = 2713310158
+	actual = SolveSecond(testFile, 10000)
+
+	if expected != actual {
+		t.Errorf("Expected %d but got %d", expected, actual)
+		t.Fail()
+	}
+
+	expected = 0
+	actual = SolveSecond(realFile, 10000)
 
 	if expected == actual {
 		t.Errorf("Did not expect %d", expected)
 		t.Fail()
 	}
 	fmt.Printf("\n-----\n --ANSWER Day 11 part 2 = %d \n-----\n", actual)
+
 }
 
-func TestStringAddition(t *testing.T) {
-	expected := "1010478"
-	strOne := "454689"
-	strTwo := "555789"
-
-	actual := addStrings(strOne, strTwo)
-
-	if expected != actual {
-		t.Errorf("Expected %s but got %s", expected, actual)
-		t.Fail()
-	}
-}
-
-func TestStringAdditionA(t *testing.T) {
-	expected := "601257"
-	strOne := "45468"
-	strTwo := "555789"
-
-	actual := addStrings(strOne, strTwo)
-
-	if expected != actual {
-		t.Errorf("Expected %s but got %s", expected, actual)
-		t.Fail()
-	}
-}
-
-func TestStringMultiply(t *testing.T) {
-	expected := "1480"
-	strOne := "40"
-	strTwo := "37"
-
-	actual := multiplyStrings(strOne, strTwo)
-
-	if expected != actual {
-		t.Errorf("Expected %s but got %s", expected, actual)
-		t.Fail()
-	}
-}
-
-func TestStringMultiplyA(t *testing.T) {
-	expected := "8604460"
-	strOne := "436"
-	strTwo := "19735"
-
-	actual := multiplyStrings(strOne, strTwo)
-
-	if expected != actual {
-		t.Errorf("Expected %s but got %s", expected, actual)
-		t.Fail()
-	}
-}
-
-func TestSubtractStrings(t *testing.T) {
-	expected := "6"
-	strOne := "9"
-	stringTwo := "3"
-
-	actual := subTractStrings(strOne, stringTwo)
-
-	if expected != actual {
-		t.Errorf("Expected %s but got %s", expected, actual)
-		t.Fail()
-	}
-}
-
-func TestSubtractStringsA(t *testing.T) {
-	expected := "120"
-	strOne := "200"
-	stringTwo := "80"
-
-	actual := subTractStrings(strOne, stringTwo)
-
-	if expected != actual {
-		t.Errorf("Expected %s but got %s", expected, actual)
-		t.Fail()
-	}
-}
-
-func TestSubtractStringsB(t *testing.T) {
-	expected := "1"
-	strOne := "11"
-	stringTwo := "10"
-
-	actual := subTractStrings(strOne, stringTwo)
-
-	if expected != actual {
-		t.Errorf("Expected %s but got %s", expected, actual)
-		t.Fail()
-	}
-}
-
-func TestSubtractStringsC(t *testing.T) {
-	expected := "11238746823648264386332"
-	strOne := "11238746823648264386432"
-	stringTwo := "100"
-
-	actual := subTractStrings(strOne, stringTwo)
-
-	if expected != actual {
-		t.Errorf("Expected %s but got %s", expected, actual)
-		t.Fail()
-	}
-}
-
-func TestStringIsDivisable(t *testing.T) {
-	expected := true
-	strOne := "9"
-	by := "3"
-
-	actual := isDivisible(strOne, by)
-
-	if expected != actual {
-		t.Errorf("Expected %v but got %v", expected, actual)
-		t.Fail()
-	}
-}
-
-func TestStringIsDivisableA(t *testing.T) {
-	expected := false
-	strOne := "22"
-	by := "3"
-
-	actual := isDivisible(strOne, by)
-
-	if expected != actual {
-		t.Errorf("Expected %v but got %v", expected, actual)
-		t.Fail()
-	}
-}
-
-func TestStringIsDivisableB(t *testing.T) {
-	expected := true
-	strOne := "69"
-	by := "3"
-
-	actual := isDivisible(strOne, by)
-
-	if expected != actual {
-		t.Errorf("Expected %v but got %v", expected, actual)
-		t.Fail()
-	}
-}
-
-func TestStringIsDivisableC(t *testing.T) {
-	expected := true
-	strOne := "69"
-	by := "3"
-
-	actual := isDivisible(strOne, by)
-
-	if expected != actual {
-		t.Errorf("Expected %v but got %v", expected, actual)
-		t.Fail()
-	}
-}
-
-func TestStringIsDivisableD(t *testing.T) {
-	expected := false
-	strOne := "6900000000000"
-	by := "107"
-
-	actual := isDivisible(strOne, by)
-
-	if expected != actual {
-		t.Errorf("Expected %v but got %v", expected, actual)
-		t.Fail()
-	}
-}
-
-func TestStringIsDivisableE(t *testing.T) {
-	expected := false
-	strOne := "300000000000002"
-	by := "3"
-
-	actual := isDivisible(strOne, by)
-
-	if expected != actual {
-		t.Errorf("Expected %v but got %v", expected, actual)
-		t.Fail()
-	}
-}
-
-func TestStringIsDivisableF(t *testing.T) {
-	expected := true
-	strOne := "300000000000003"
-	by := "3"
-
-	actual := isDivisible(strOne, by)
-
-	if expected != actual {
-		t.Errorf("Expected %v but got %v", expected, actual)
-		t.Fail()
-	}
-}
-
-// func BenchmarkSolveFirst(b *testing.B) {
-// 	for n := 0; n < b.N; n++ {
-// 		SolveFirst(realFile)
-// 	}
-// }
-
-// func BenchmarkSolveSecond(b *testing.B) {
-// 	for n := 0; n < b.N; n++ {
-// 		SolveSecond(realFile)
-// 	}
-// }
-
-func BenchmarkAddition(b *testing.B) {
-	const strOne = "24726487236487236487236487236487"
-	const strTwo = "2472648723648723648723648723648712321312"
+func BenchmarkSolveFirst(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		addStrings(strOne, strTwo)
+		SolveFirst(realFile)
 	}
 }
 
-func BenchmarkMultiplication(b *testing.B) {
-	const strOne = "24726487236487236487236487236487"
-	const strTwo = "2472648723648723648723648723648712321312"
+func BenchmarkSolveSecond(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		multiplyStrings(strOne, strTwo)
-	}
-}
-
-func BenchmarkSubTraction(b *testing.B) {
-	const strOne = "24726487236487236487236487236487"
-	const strTwo = "24726487236487236487236487236"
-	for n := 0; n < b.N; n++ {
-		subTractStrings(strOne, strTwo)
-	}
-}
-
-func BenchmarkDivisable(b *testing.B) {
-	const strOne = "24726487236487236487236487236487"
-	const strTwo = "12312"
-	for n := 0; n < b.N; n++ {
-		isDivisible(strOne, strTwo)
+		SolveSecond(realFile, 10000)
 	}
 }
