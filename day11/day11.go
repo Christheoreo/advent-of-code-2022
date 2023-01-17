@@ -19,15 +19,13 @@ func SolveFirst(filename string) int {
 	monkeys := sortData(data)
 	total := 0
 	for _, monkey := range monkeys {
-		// fmt.Printf("Monkey %s worry lvels = %v\n", monkey.Name, monkey.WorryLevels)
 		fmt.Printf("Monkey %+v\n\n", monkey)
 	}
 	return total
 }
 
 func SolveSecond(filename string) int {
-	// data, _ := filereader.ReadFileToStringArray(filename)
-	x := 1 // middle spriate pos
+	x := 1
 
 	return x
 }

@@ -21,13 +21,13 @@ func sortData(data []string) []*Monkey {
 			MonkeyToThrowTo: [2]int{0, 0},
 		}
 		// Index + 1 will be the worry level
-		origonalWorryLevels := strings.Split(data[index+1][18:], ", ")
-
-		for _, wLS := range origonalWorryLevels {
+		worryLevel := strings.Split(data[index+1][18:], ", ")
+		for _, wLS := range worryLevel {
 			val, _ := strconv.Atoi(wLS)
 			monkey.WorryLevels = append(monkey.WorryLevels, val)
 		}
 
+		// Index + 2 will be the operation
 		operation := data[index+2][13:]
 		if operation == "new = old * 19" {
 			monkey.Operation = 'a'
@@ -39,17 +39,19 @@ func sortData(data []string) []*Monkey {
 			monkey.Operation = 'd'
 		}
 
+		// Index + 3 will be the Test Operation
 		val, _ := strconv.Atoi(data[index+3][21:])
 		monkey.TestOperation = val
 
-		//29 - truw
+		// Index + 4 will be the true art of the test
 		val, _ = strconv.Atoi(data[index+4][29:])
 		monkey.MonkeyToThrowTo[0] = val
-		//30 - false
+
+		// Index + 5 will be the false part of the Test
 		val, _ = strconv.Atoi(data[index+5][30:])
 		monkey.MonkeyToThrowTo[1] = val
-
 	}
+	// Then we need to append the monkey for the last one.
 	monkeys = append(monkeys, monkey)
 	return monkeys
 }
