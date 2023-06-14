@@ -2,16 +2,14 @@ package day01
 
 import (
 	"strconv"
-
-	"github.com/christheoreo/advent-of-code-2022/internal/filereader"
+	"strings"
 )
 
-func SolveFirst(filename string) int {
-	data, _ := filereader.ReadFileToStringArray(filename)
+func SolveFirst(data string) int {
 	largest := 0
 	runningTotal := 0
 
-	for _, v := range data {
+	for _, v := range strings.Split(data, "\n") {
 		if v == "" {
 			if runningTotal > largest {
 				largest = runningTotal
@@ -24,13 +22,12 @@ func SolveFirst(filename string) int {
 	}
 	return largest
 }
-func SolveSecond(filename string) int {
-	data, _ := filereader.ReadFileToStringArray(filename)
+func SolveSecond(data string) int {
 	l := [3]int{0, 0, 0}
 
 	runningTotal := 0
 
-	for _, v := range data {
+	for _, v := range strings.Split(data, "\n") {
 		if v == "" {
 			checkRunningTotal(runningTotal, &l)
 			runningTotal = 0

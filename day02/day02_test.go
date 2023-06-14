@@ -1,57 +1,51 @@
 package day02
 
 import (
+	_ "embed"
 	"fmt"
 	"testing"
 )
 
-var testFile string = "problem-2-example.txt"
-var realFile string = "problem-2.txt"
+//go:embed real.txt
+var data string
+
+//go:embed example.txt
+var testData string
 
 func TestSolveFirst(t *testing.T) {
 	expected := 15
-	actual := SolveFirst(testFile)
+	actual := SolveFirst(testData)
+
 	if expected != actual {
 		t.Errorf("Expected %d but got %d", expected, actual)
 		t.Fail()
 	}
-	answer := SolveFirst(realFile)
-	fmt.Printf("\n-----\n --ANSWER Day 02 part 1 = %d \n-----\n", answer)
+
+	answer := SolveFirst(data)
+	fmt.Printf("ANSWER Day 02 part 1 = %d\n", answer)
 }
 
-func TestSolveSecondA(t *testing.T) {
+func TestSolveSecond(t *testing.T) {
 	expected := 12
-	actual := SolveSecondA(testFile)
+	actual := SolveSecond(testData)
+
 	if expected != actual {
 		t.Errorf("Expected %d but got %d", expected, actual)
 		t.Fail()
 	}
-	answer := SolveSecondA(realFile)
-	fmt.Printf("\n-----\n --ANSWER Day 02 Part 2A = %d \n-----\n", answer)
-}
-func TestSolveSecondB(t *testing.T) {
-	expected := 12
-	actual := SolveSecondB(testFile)
-	if expected != actual {
-		t.Errorf("Expected %d but got %d", expected, actual)
-		t.Fail()
-	}
-	answer := SolveSecondB(realFile)
-	fmt.Printf("\n-----\n --ANSWER Day 02 part 2B = %d \n-----\n", answer)
+
+	answer := SolveSecond(data)
+	fmt.Printf("ANSWER Day 02 part 2 = %d\n", answer)
 }
 
 func BenchmarkSolveFirst(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		SolveFirst(realFile)
+		SolveFirst(data)
 	}
 }
-func BenchmarkSolveSecondA(b *testing.B) {
+
+func BenchmarkSolveSecond(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		SolveSecondA(realFile)
-	}
-}
-func BenchmarkSolveSecondB(b *testing.B) {
-	for n := 0; n < b.N; n++ {
-		SolveSecondB(realFile)
+		SolveSecond(data)
 	}
 }
