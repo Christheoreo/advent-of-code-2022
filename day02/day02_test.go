@@ -1,4 +1,4 @@
-package day01
+package day02
 
 import (
 	_ "embed"
@@ -6,14 +6,14 @@ import (
 	"testing"
 )
 
-//go:embed problem-1.txt
+//go:embed real.txt
 var data string
 
-//go:embed problem-1-example.txt
+//go:embed example.txt
 var testData string
 
 func TestSolveFirst(t *testing.T) {
-	expected := 24000
+	expected := 15
 	actual := SolveFirst(testData)
 
 	if expected != actual {
@@ -22,11 +22,11 @@ func TestSolveFirst(t *testing.T) {
 	}
 
 	answer := SolveFirst(data)
-	fmt.Printf("ANSWER Day 01 part 1 = %d\n", answer)
+	fmt.Printf("ANSWER Day 02 part 1 = %d\n", answer)
 }
 
 func TestSolveSecond(t *testing.T) {
-	expected := 45000
+	expected := 12
 	actual := SolveSecond(testData)
 
 	if expected != actual {
@@ -35,7 +35,7 @@ func TestSolveSecond(t *testing.T) {
 	}
 
 	answer := SolveSecond(data)
-	fmt.Printf("ANSWER Day 01 part 2 = %d\n", answer)
+	fmt.Printf("ANSWER Day 02 part 2 = %d\n", answer)
 }
 
 func BenchmarkSolveFirst(b *testing.B) {
