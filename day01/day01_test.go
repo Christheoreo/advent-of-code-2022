@@ -1,46 +1,51 @@
 package day01
 
 import (
+	_ "embed"
 	"fmt"
 	"testing"
 )
 
-var testFile string = "problem-1-example.txt"
-var realFile string = "problem-1.txt"
+//go:embed problem-1.txt
+var data string
+
+//go:embed problem-1-example.txt
+var testData string
 
 func TestSolveFirst(t *testing.T) {
 	expected := 24000
-	actual := SolveFirst(testFile)
+	actual := SolveFirst(testData)
 
 	if expected != actual {
 		t.Errorf("Expected %d but got %d", expected, actual)
 		t.Fail()
 	}
 
-	answer := SolveFirst(realFile)
+	answer := SolveFirst(data)
 	fmt.Printf("\n-----\n --ANSWER Day 01 part 1 = %d \n-----\n", answer)
 }
 
 func TestSolveSecond(t *testing.T) {
 	expected := 45000
-	actual := SolveSecond(testFile)
+	actual := SolveSecond(testData)
 
 	if expected != actual {
 		t.Errorf("Expected %d but got %d", expected, actual)
 		t.Fail()
 	}
 
-	answer := SolveSecond(realFile)
+	answer := SolveSecond(data)
 	fmt.Printf("\n-----\n --ANSWER Day 01 part 2 = %d \n-----\n", answer)
 }
 
 func BenchmarkSolveFirst(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		SolveFirst(realFile)
+		SolveFirst(data)
 	}
 }
+
 func BenchmarkSolveSecond(b *testing.B) {
 	for n := 0; n < b.N; n++ {
-		SolveSecond(realFile)
+		SolveSecond(data)
 	}
 }
