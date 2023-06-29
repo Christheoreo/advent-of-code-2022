@@ -1,0 +1,110 @@
+package day05
+
+import (
+	"fmt"
+	"strconv"
+	"strings"
+)
+
+// func SolveFirst(data string) string {
+// 	// Find the first line including " 1"
+// 	lines := strings.Split(data, "\n")
+// 	numberIndex := 0
+// 	for lineIndex, line := range lines {
+// 		if strings.Contains(line, " 1") {
+// 			numberIndex = lineIndex
+// 			break
+// 		}
+// 	}
+
+// 	numberLine := lines[numberIndex]
+
+// 	x := strings.TrimSpace(numberLine)
+// 	columnCount := len(strings.Split(x, " "))
+
+// 	return ""
+// }
+
+const emptyS = byte(32)
+
+func SolveFirst(data string) string {
+	// Find the first line including " 1"
+	// mapping := map[int][]byte{}
+	mapping := make([][]byte, 0)
+	tippingPoint := strings.Index(data, "\nmove")
+	// lastRow := tippingPoint - 2
+
+	numbers := data[:tippingPoint-1]
+	other := data[tippingPoint+1:]
+	// columnCount, _ := strconv.Atoi(string(data[tippingPoint-3]))
+	// fmt.Println(columnCount)
+
+	// 4 * col - 1 = index
+
+	// Start at index 1, then add 4 to get col value until we run out of string
+	numbersSplit := strings.Split(numbers, "\n")
+
+	// fmt.Println(numbers)
+	// fmt.Println(numbersSplit)
+	for _, val := range numbersSplit {
+		l := len(val)
+		fmt.Printf("Val = %s and l = %d\n", val, l)
+
+		for i, j := 1, 1; i <= l; i, j = i+4, j+1 {
+
+			r := val[i]
+
+			if r == emptyS {
+				continue
+			}
+			_, ok := mapping[j]
+
+			if !ok {
+				mapping[j] = make([]byte, 0)
+			}
+			mapping[j] = append(mapping[j], r)
+		}
+	}
+
+	for col, v := range mapping {
+		fmt.Printf("Length of %d is %d\n", col, len(v))
+		for _, x := range v {
+			fmt.Printf("Col %d = %s\n", col, string(x))
+		}
+	}
+
+	for _, val := range strings.Split(other, "\n") {
+		s := strings.Split(val, " ")
+
+		// move, from, to := 0,0,0
+		move, _ := strconv.Atoi(s[1])
+		from, _ := strconv.Atoi(s[3])
+		to, _ := strconv.Atoi(s[5])
+
+		for i := 1; i <= move; i++ {
+			lastEle := mapping[from][len(mapping[from])-1]
+			mapping[from] = mapping[from][:len(mapping[from])-1]
+			mapping[to] = append(mapping[to], lastEle)
+		}
+
+		// fmt.Printf("%s - %s - %s\n", s[1], s[3], s[5])
+	}
+
+	answer := ""
+	// for _, val := range mapping {
+	// 	answer += string(val[len(val)-1])
+	// }
+
+	for k := 1; k <= len(mapping); k++ {
+		val := mapping[k]
+		answer += string(val[len(val)-1])
+	}
+
+	// fmt.Println(other)
+
+	return answer
+}
+
+func SolveSecond(data string) string {
+	return ""
+}
