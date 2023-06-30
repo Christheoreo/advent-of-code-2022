@@ -19,8 +19,6 @@ func (s *StorageStructure) GetTotalSize() int {
 	return size
 }
 
-const max = 100000
-
 func (s *StorageStructure) AddChildFolder(folderName string) {
 	_, ok := s.Children[folderName]
 
@@ -34,9 +32,7 @@ func (s *StorageStructure) AddChildFolder(folderName string) {
 }
 
 func SolveFirst(data string) int {
-
-	// directories := make([]byte, 1)
-	// directories[0] = '/'
+	const max = 100000
 	storage := &StorageStructure{
 		SizeAtThisLevel: 0,
 		Children:        make(map[string]*StorageStructure),
@@ -67,28 +63,26 @@ func SolveFirst(data string) int {
 		}
 
 		// else it is a file
-
 		s := strings.Split(line, " ")
 		numberS := s[0]
 		number, _ := strconv.Atoi(numberS)
 		storage.SizeAtThisLevel += number
 	}
 
-	// answer := 0
-
+	// Go to the top level Dir
 	for storage.Parent != nil {
 		storage = storage.Parent
 	}
 
-	_, answer := countX(storage)
+	_, answer := countX(storage, max)
 	return answer
 }
 
-func countX(s *StorageStructure) (totalSize int, answer int) {
+func countX(s *StorageStructure, max int) (totalSize int, answer int) {
 
 	if len(s.Children) > 0 {
 		for _, c := range s.Children {
-			newTotalSize, newAnswer := countX(c)
+			newTotalSize, newAnswer := countX(c, max)
 			totalSize += newTotalSize
 			answer += newAnswer
 		}
