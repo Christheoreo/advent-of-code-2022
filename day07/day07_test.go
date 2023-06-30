@@ -26,28 +26,28 @@ func TestSolveFirst(t *testing.T) {
 	fmt.Printf("ANSWER Day 07 part 1 = %d\n", answer)
 }
 
-// func TestSolveSecond(t *testing.T) {
-// 	expected := 19
-// 	actual := SolveSecond(testData)
+func TestSolveSecond(t *testing.T) {
+	expected := 24933642
+	actual := SolveSecond(testData)
 
-// 	if expected != actual {
-// 		t.Errorf("Expected %d but got %d", expected, actual)
-// 		t.Fail()
-// 		return
-// 	}
+	if expected != actual {
+		t.Errorf("Expected %d but got %d", expected, actual)
+		t.Fail()
+		return
+	}
 
-// 	answer := SolveSecond(data)
-// 	fmt.Printf("ANSWER Day 07 part 2 = %d\n", answer)
-// }
+	answer := SolveSecond(data)
+	fmt.Printf("ANSWER Day 07 part 2 = %d\n", answer)
+}
 
-// func BenchmarkSolveFirst(b *testing.B) {
-// 	for n := 0; n < b.N; n++ {
-// 		SolveFirst(data)
-// 	}
-// }
+func BenchmarkSolveFirst(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		SolveFirst(data)
+	}
+}
 
-// func BenchmarkSolveSecond(b *testing.B) {
-// 	for n := 0; n < b.N; n++ {
-// 		SolveSecond(data)
-// 	}
-// }
+func BenchmarkSolveSecond(b *testing.B) {
+	for n := 0; n < b.N; n++ {
+		SolveSecond(data)
+	}
+}

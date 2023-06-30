@@ -31,8 +31,7 @@ func (s *StorageStructure) AddChildFolder(folderName string) {
 	}
 }
 
-func SolveFirst(data string) int {
-	const max = 100000
+func createStorage(data string) *StorageStructure {
 	storage := &StorageStructure{
 		SizeAtThisLevel: 0,
 		Children:        make(map[string]*StorageStructure),
@@ -73,6 +72,12 @@ func SolveFirst(data string) int {
 	for storage.Parent != nil {
 		storage = storage.Parent
 	}
+	return storage
+}
+
+func SolveFirst(data string) int {
+	const max = 100000
+	storage := createStorage(data)
 
 	_, answer := countX(storage, max)
 	return answer
@@ -102,5 +107,45 @@ func countX(s *StorageStructure, max int) (totalSize int, answer int) {
 
 }
 func SolveSecond(data string) int {
-	return 0
+	const totalSize = 70000000
+	const amountNeeded = 30000000
+	storage := createStorage(data)
+
+	storageTotal := countTotalSize(storage)
+
+	spaceAvailable := totalSize - storageTotal
+
+	toDelete := amountNeeded - spaceAvailable
+
+	_, answer := countY(storage, toDelete, storageTotal)
+	return answer
+}
+
+func countTotalSize(s *StorageStructure) int {
+	size := s.SizeAtThisLevel
+	if len(s.Children) > 0 {
+		for _, c := range s.Children {
+			size += countTotalSize(c)
+		}
+	}
+	return size
+}
+
+func countY(s *StorageStructure, spaceNeeded int, currentBestFit int) (totalSize int, currentBestFitNew int) {
+	currentBestFitNew = currentBestFit
+	if len(s.Children) > 0 {
+		for _, c := range s.Children {
+			newTotalSize, cb := countY(c, spaceNeeded, currentBestFitNew)
+			currentBestFitNew = cb
+			totalSize += newTotalSize
+		}
+	}
+
+	totalSize += s.SizeAtThisLevel
+
+	if totalSize >= spaceNeeded && totalSize < currentBestFitNew {
+		currentBestFitNew = totalSize
+	}
+
+	return
 }
